@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public float Speed;
+    public float Speed = 1.0f;
+    public bool  Disabled = false;
     private Rigidbody _rb;
 
     // Start is called before the first frame update
@@ -16,26 +17,28 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 temp = Vector3.zero;
+        if (Disabled) return;
+
+        var temp = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
-            temp += Vector3.up * Speed;
+            temp += Vector3.up;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            temp += Vector3.left * Speed;
+            temp += Vector3.left;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            temp += Vector3.down * Speed;
+            temp += Vector3.down;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            temp += Vector3.right * Speed;
+            temp += Vector3.right;
         }
         if (!temp.Equals(Vector3.zero)) 
         {
-            _rb.MovePosition(_rb.transform.position + temp);
+            _rb.MovePosition(_rb.transform.position + (temp * Speed));
         }
     }
 }
