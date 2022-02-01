@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControls : MonoBehaviour
 {
     public float Speed = 1.0f;
     public bool  Disabled = false;
-    private Rigidbody _rb;
+    private Rigidbody2D _rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.gravityScale = 0f;
     }
 
     // Update is called once per frame
