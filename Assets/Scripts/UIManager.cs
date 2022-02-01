@@ -8,48 +8,35 @@ public class UIManager : MonoBehaviour
 {
     public Canvas UICanvas;
 
-    public Image  BattleBackground;
-    public Image  BattleSprite;
-    public Text   BattleText;
-    public Button BattleAttackButton;
-    public Button BattleFleeButton;
-    private Action<string> _battleAction;
+    public  Canvas BattleCanvas;
+    public  Image  BattleSprite;
+    private Action<string> _battleTurnAction;
+    private Action<string> _battleResultAction;
 
     // Start is called before the first frame update
     void Start()
     {
-        BattleBackground.enabled = false;
-        BattleSprite.enabled = false;
-        BattleText.enabled = false;
-        ToggleButton(BattleAttackButton, false);
-        ToggleButton(BattleFleeButton, false);
+        UICanvas.enabled = true;
+        BattleCanvas.enabled = false;
     }
 
-    public void StartBattle(Sprite sprite, Action<string> action)
+    public void StartBattle(Sprite sprite, Action<string> turnAction, Action<string> resultAction)
     {
-        _battleAction = action;
-        BattleBackground.enabled = true;
+        UICanvas.enabled = false;
         BattleSprite.sprite = sprite;
-        BattleSprite.enabled = true;
-        BattleText.enabled = true;
-        ToggleButton(BattleAttackButton, true);
-        ToggleButton(BattleFleeButton, true);
+        _battleTurnAction = turnAction;
+        _battleResultAction = resultAction;
+        BattleCanvas.enabled = true;
+    }
+
+    public void OnBattleTurn(string turn) {
+        _battleTurnAction.Invoke(turn);
     }
 
     public void QuitBattle(string result)
     {
-        BattleBackground.enabled = false;
-        BattleSprite.enabled = false;
-        BattleText.enabled = false;
-        ToggleButton(BattleAttackButton, false);
-        ToggleButton(BattleFleeButton, false);
-        _battleAction.Invoke(result);
-    }
-
-    private void ToggleButton(Button button, bool active)
-    {
-        button.enabled = active;
-        button.image.enabled = active;
-        button.GetComponentInChildren<Text>().enabled = active;
+        BattleCanvas.enabled = false;
+        _battleResultAction.Invoke(result);
+        UICanvas.enabled = true;
     }
 }

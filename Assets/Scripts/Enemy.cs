@@ -14,9 +14,10 @@ public class Enemy : MonoBehaviour
         {
             _pc.Disabled = true;
             UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
-            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-            Action<string> battleAction = m => OnBattleResult(m);
-            ui.StartBattle(sr.sprite, battleAction);
+            Sprite s = gameObject.GetComponent<SpriteRenderer>().sprite;
+            Action<string> battleTurnAction   = m => Debug.Log(m);
+            Action<string> battleResultAction = m => OnBattleResult(m);
+            ui.StartBattle(s, battleTurnAction, battleResultAction);
         }
     }
 

@@ -7,6 +7,7 @@ public class PlayerControls : MonoBehaviour
 {
     public float Speed = 1.0f;
     public bool  Disabled = false;
+
     private Rigidbody2D _rb;
 
     // Start is called before the first frame update
