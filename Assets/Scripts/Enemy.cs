@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Attributes))]
 public class Enemy : MonoBehaviour
 {
+    public Attributes MyAttributes;
+
     private PlayerControls _pc;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        MyAttributes = GetComponent<Attributes>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
