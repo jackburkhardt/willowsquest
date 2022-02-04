@@ -8,20 +8,33 @@ public class UIManager : MonoBehaviour
 {
     public Canvas UICanvas;
 
+    public Canvas InventoryCanvas;
+    public GameObject InventorySlots;
+    private Action[] _inventoryUseActions;
+
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
     private Action<string> _battleTurnAction;
     private Action<string> _battleResultAction;
 
+    public PlayerControls PlayerControls;
+
     // Start is called before the first frame update
     void Start()
     {
+        Screen.SetResolution(1280, 720, true);
+
+        PlayerControls.Disabled = false;
+
         UICanvas.enabled = true;
+        InventoryCanvas.enabled = false;
         BattleCanvas.enabled = false;
     }
 
     public void StartBattle(Sprite sprite, Action<string> turnAction, Action<string> resultAction)
     {
+        PlayerControls.Disabled = true;
+
         UICanvas.enabled = false;
         BattleSprite.sprite = sprite;
         _battleTurnAction = turnAction;
@@ -38,5 +51,52 @@ public class UIManager : MonoBehaviour
         BattleCanvas.enabled = false;
         _battleResultAction.Invoke(result);
         UICanvas.enabled = true;
+
+        PlayerControls.Disabled = false;
+    }
+
+    public void OpenInventory(ref List<Item> inventoryItems)
+    {
+        PlayerControls.Disabled = true;
+
+        RenderInventory(ref inventoryItems);
+        InventoryCanvas.enabled = true;
+    }
+    
+    public void RenderInventory(ref List<Item> inventoryItems)
+    {
+        _inventoryUseActions = new Action[inventoryItems.Count];
+
+        Image[] slots = InventorySlots.GetComponentsInChildren<Image>(true);
+        int count = 0;
+        foreach (var item in inventoryItems)
+        {
+            slots[count].sprite = item.Icon;
+            slots[count].enabled = true;
+            _inventoryUseActions[count] = item.Use;
+            count++;
+        }
+        while (count < slots.Length)
+        {
+            slots[count].enabled = false;
+            count++;
+        }
+    }
+
+    public void OnInventoryUse(int slot)
+    {
+        _inventoryUseActions[slot].Invoke();
+    }
+
+    public void CloseInventory()
+    {
+        InventoryCanvas.enabled = false;
+
+        PlayerControls.Disabled = false;
+    }
+
+    public void GameOver()
+    {
+        PlayerControls.Disabled = true;
     }
 }

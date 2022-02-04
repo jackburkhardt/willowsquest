@@ -6,34 +6,27 @@ using UnityEngine;
 [RequireComponent(typeof(Attributes))]
 public class Enemy : MonoBehaviour
 {
-    public Attributes MyAttributes;
-
-    private PlayerControls _pc;
+    public Attributes Attributes;
 
     // Start is called before the first frame update
     void Start()
     {
-        MyAttributes = GetComponent<Attributes>();
+        Attributes = GetComponent<Attributes>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        _pc = collision.gameObject.GetComponent<PlayerControls>();
-        if (_pc) 
+        if (collision.gameObject.GetComponent<Player>())
         {
-            _pc.Disabled = true;
             UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
             Sprite s = gameObject.GetComponent<SpriteRenderer>().sprite;
-            Action<string> battleTurnAction   = m => Debug.Log(m);
-            Action<string> battleResultAction = m => OnBattleResult(m);
-            ui.StartBattle(s, battleTurnAction, battleResultAction);
+            ui.StartBattle(s, Debug.Log, OnBattleResult);
         }
     }
 
     void OnBattleResult(string message)
     {
         Debug.Log(message);
-        _pc.Disabled = false;
         if (message.Equals("victory"))
         {
             Destroy(gameObject);
