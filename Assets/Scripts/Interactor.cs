@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ public class Interactor : MonoBehaviour
         switch (type)
         {
             case InteractionType.Speak:
-                StartCoroutine(DisplayDialogue(dialogue));
+                StartCoroutine(DisplayDialogue(dialogue, EndInteraction));
                 break;
             case InteractionType.Rest:
                 // do resting func (go.startrest(), etc)
@@ -56,7 +57,7 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayDialogue(List<string> dialogue)
+    public IEnumerator DisplayDialogue(List<string> dialogue, Action postDialogueAction = null)
     {
         // this coroutine chops each line up into a char array and then
         // displays each char in order to simulate scroll effect
@@ -81,10 +82,10 @@ public class Interactor : MonoBehaviour
         }
         dialogueBackgroundImage.enabled = false;
         displayText.enabled = false;
-        EndInteraction(InteractionType.Speak);
+        postDialogueAction?.Invoke();
     }
 
-    public void EndInteraction(InteractionType type)
+    public void EndInteraction()
     {
         isInteracting = false;
         PlayerControls.Disabled = false;
