@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     public float EXP = 0f;
 
+    private bool _statsOpen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+            if (_statsOpen)
+            {
+                ui.CloseStats();
+                _statsOpen = false;
+            }
+            else
+            {
+                ui.OpenStats(ref Attributes);
+                _statsOpen = true;
+            }
+        }
+
         if (Attributes.HP < 0)
         {
             UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
