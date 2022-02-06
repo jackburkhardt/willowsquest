@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject InventorySlots;
     private Action[] _inventoryUseActions;
 
+    public Canvas StatsCanvas;
+
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
     private Action<string> _battleTurnAction;
@@ -26,20 +28,17 @@ public class UIManager : MonoBehaviour
 
         PlayerControls.Disabled = false;
 
-        UICanvas.enabled = true;
-        InventoryCanvas.enabled = false;
-        BattleCanvas.enabled = false;
+        EnableCanvas(UICanvas);
     }
 
     public void StartBattle(Sprite sprite, Action<string> turnAction, Action<string> resultAction)
     {
         PlayerControls.Disabled = true;
 
-        UICanvas.enabled = false;
         BattleSprite.sprite = sprite;
         _battleTurnAction = turnAction;
         _battleResultAction = resultAction;
-        BattleCanvas.enabled = true;
+        EnableCanvas(BattleCanvas);
     }
 
     public void OnBattleTurn(string turn) {
@@ -48,11 +47,10 @@ public class UIManager : MonoBehaviour
 
     public void QuitBattle(string result)
     {
-        BattleCanvas.enabled = false;
         _battleResultAction.Invoke(result);
-        UICanvas.enabled = true;
 
         PlayerControls.Disabled = false;
+        EnableCanvas(UICanvas);
     }
 
     public void OpenInventory(ref List<Item> inventoryItems)
@@ -95,8 +93,37 @@ public class UIManager : MonoBehaviour
         PlayerControls.Disabled = false;
     }
 
+    public void OpenStats(ref Attributes attributes)
+    {
+        PlayerControls.Disabled = true;
+
+        StatsCanvas.enabled = true;
+    }
+
+    public void CloseStats()
+    {
+        StatsCanvas.enabled = false;
+
+        PlayerControls.Disabled = false;
+    }
+
     public void GameOver()
     {
         PlayerControls.Disabled = true;
+    }
+
+    public void EnableCanvas(Canvas canvas)
+    {
+        foreach (var c in new Canvas[4] {UICanvas, InventoryCanvas, StatsCanvas, BattleCanvas})
+        {
+            if (c.name.Equals(canvas.name))
+            {
+                c.enabled = true;
+            }
+            else
+            {
+                c.enabled = false;
+            }
+        }
     }
 }
