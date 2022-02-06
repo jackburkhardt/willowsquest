@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5acbdd76bd9d34f8033c83ae065e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textScrollDelay: 0.05
+  textScrollDelay: 0.03
   displayText: {fileID: 1540436915}
   nextPageImage: {fileID: 1380419668}
   dialogueBackgroundImage: {fileID: 1603357714}

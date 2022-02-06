@@ -13,6 +13,7 @@ public class Interactor : MonoBehaviour
     private bool isInteracting;
     
     // the delay between characters in the dialogue text scrolling (smaller = faster)
+    // 0.01 fast, 0.05 medium, 0.1 slow
     [SerializeField] private float textScrollDelay;
     
     // Canvas text for dialogue
@@ -37,6 +38,7 @@ public class Interactor : MonoBehaviour
 
     public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null)
     {
+        if (isInteracting) return;
         isInteracting = true;
         PlayerControls.Disabled = true;
         switch (type)
