@@ -9,44 +9,48 @@ public class NPCInteractor : MonoBehaviour
 {
 
     // Interactor for the player, assigned automatically on scene start.
-    private Interactor playerInteractor;
+    private Interactor _playerInteractor;
     
     // The type of interaction this NPC provides
-    [SerializeField] private InteractionType interactionType;
+    [SerializeField] private InteractionType _interactionType;
     
     // (Optional) list of dialogue lines
-    [SerializeField] private List<string> dialogue;
+    [SerializeField] private List<string> _dialogue;
+
+    // (Optional) enemy information if this is an enemy
+    [SerializeField] private Enemy _enemy;
     
     // Is player in range of this npc?
-    private bool inRange;
+    private bool _inRange;
     
     // Icon to appear above their head (if we want) when in range to signal intractability.
-    private SpriteRenderer icon;
+    private SpriteRenderer _icon;
     
     // Start is called before the first frame update
     void Start()
     {
-        playerInteractor = FindObjectOfType<Interactor>();
+        _playerInteractor = FindObjectOfType<Interactor>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (inRange && !playerInteractor.IsInteracting && Input.GetKeyDown(KeyCode.E))
+        if (_inRange && !_playerInteractor.IsInteracting && 
+            (_interactionType is InteractionType.Battle || Input.GetKeyDown(KeyCode.E)))
         {
-            playerInteractor.StartInteraction(gameObject, interactionType, dialogue);
+            _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        inRange = true;
-        //icon.enabled = true;
+        _inRange = true;
+        // icon.enabled = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D col)
     {
-        inRange = false;
-       // icon.enabled = false;
+        _inRange = false;
+        // icon.enabled = false;
     }
 }

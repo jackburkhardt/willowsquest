@@ -11,9 +11,7 @@ public class Item : MonoBehaviour
 
     public virtual void Use()
     {
-        Debug.Log("Using " + Name);
-
-        Inventory i = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+        Inventory i = FindObjectOfType<Player>().Inventory;
         i.Remove(this);
 
         // Maybe we want to make this not a MonoBehaviour?

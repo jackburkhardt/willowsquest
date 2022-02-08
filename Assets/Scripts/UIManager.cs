@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Canvas StartCanvas;
+
     public Canvas UICanvas;
 
     public Canvas InventoryCanvas;
@@ -17,7 +19,9 @@ public class UIManager : MonoBehaviour
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
     private Action<string> _battleTurnAction;
-    private Action<string> _battleResultAction;
+    private Action _postBattleAction;
+
+    public Canvas GameOverCanvas;
 
     public PlayerControls PlayerControls;
 
@@ -26,31 +30,41 @@ public class UIManager : MonoBehaviour
     {
         Screen.SetResolution(1280, 720, true);
 
-        PlayerControls.Disabled = false;
-
-        EnableCanvas(UICanvas);
+        PlayerControls.Disabled = true;
+        SetCanvas(StartCanvas);
     }
 
-    public void StartBattle(Sprite sprite, Action<string> turnAction, Action<string> resultAction)
+    public void StartGame()
+    {
+        PlayerControls.Disabled = false;
+        SetCanvas(UICanvas);
+    }
+
+    public void GameOver()
     {
         PlayerControls.Disabled = true;
+        SetCanvas(GameOverCanvas);
+    }
 
-        BattleSprite.sprite = sprite;
-        _battleTurnAction = turnAction;
-        _battleResultAction = resultAction;
-        EnableCanvas(BattleCanvas);
+    public void StartBattle(Enemy enemy, Action postBattleAction)
+    {
+        BattleSprite.sprite = enemy.Sprite;
+        _battleTurnAction = enemy.OnBattleTurn;
+        _postBattleAction = postBattleAction;
+
+        SetCanvas(BattleCanvas);
+        ToggleCanvas(UICanvas, true);
     }
 
     public void OnBattleTurn(string turn) {
         _battleTurnAction.Invoke(turn);
     }
 
-    public void QuitBattle(string result)
+    public void QuitBattle()
     {
-        _battleResultAction.Invoke(result);
+        _postBattleAction.Invoke();
 
-        PlayerControls.Disabled = false;
-        EnableCanvas(UICanvas);
+        SetCanvas(UICanvas);
     }
 
     public void OpenInventory(ref List<Item> inventoryItems)
@@ -58,7 +72,7 @@ public class UIManager : MonoBehaviour
         PlayerControls.Disabled = true;
 
         RenderInventory(ref inventoryItems);
-        InventoryCanvas.enabled = true;
+        ToggleCanvas(InventoryCanvas, true);
     }
     
     public void RenderInventory(ref List<Item> inventoryItems)
@@ -88,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseInventory()
     {
-        InventoryCanvas.enabled = false;
+        ToggleCanvas(InventoryCanvas, false);
 
         PlayerControls.Disabled = false;
     }
@@ -97,24 +111,27 @@ public class UIManager : MonoBehaviour
     {
         PlayerControls.Disabled = true;
 
-        StatsCanvas.enabled = true;
+        RenderStats(ref attributes);
+        ToggleCanvas(StatsCanvas, true);
+    }
+
+    void RenderStats(ref Attributes a)
+    {
+        Text text = StatsCanvas.GetComponentInChildren<Text>(true);
+        text.text = String.Format("HP\t\t{0:N0}\nATK\t\t{1:N0}\nDEF\t\t{2:N0}\nSPD\t\t{3:N0}\nMD\t\t{4}",
+            a.HP, a.ATK, a.DEF, a.SPD, a.MD.ToString());
     }
 
     public void CloseStats()
     {
-        StatsCanvas.enabled = false;
+        ToggleCanvas(StatsCanvas, false);
 
         PlayerControls.Disabled = false;
     }
 
-    public void GameOver()
+    void SetCanvas(Canvas canvas)
     {
-        PlayerControls.Disabled = true;
-    }
-
-    public void EnableCanvas(Canvas canvas)
-    {
-        foreach (var c in new Canvas[4] {UICanvas, InventoryCanvas, StatsCanvas, BattleCanvas})
+        foreach (var c in new Canvas[6] {StartCanvas, UICanvas, InventoryCanvas, StatsCanvas, BattleCanvas, GameOverCanvas})
         {
             if (c.name.Equals(canvas.name))
             {
@@ -125,5 +142,10 @@ public class UIManager : MonoBehaviour
                 c.enabled = false;
             }
         }
+    }
+
+    void ToggleCanvas(Canvas canvas, bool enable)
+    {
+        canvas.enabled = enable;
     }
 }

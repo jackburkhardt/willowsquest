@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+            UIManager ui = FindObjectOfType<UIManager>();
             if (_isOpen) 
             {
                 ui.CloseInventory();
@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
         Items.Add(item);
         if (_isOpen) UpdateUI();
 
-        if (Items.Count == Capacity) Full=true;
+        if (Items.Count == Capacity) Full = true;
 
         return true;
     }
@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
 
     void UpdateUI()
     {
-        UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+        UIManager ui = FindObjectOfType<UIManager>();
         ui.RenderInventory(ref Items);
     }
 }

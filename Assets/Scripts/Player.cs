@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+            UIManager ui = FindObjectOfType<UIManager>();
             if (_statsOpen)
             {
                 ui.CloseStats();
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
         if (Attributes.HP < 0)
         {
-            UIManager ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+            UIManager ui = FindObjectOfType<UIManager>();
             ui.GameOver();
         }
         UpdateHealth(Attributes.HP);

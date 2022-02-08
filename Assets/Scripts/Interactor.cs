@@ -11,37 +11,31 @@ using UnityEngine.UI;
 public class Interactor : MonoBehaviour
 {
     // is player currently in an interaction?
-    private bool isInteracting;
+    private bool _isInteracting;
     
     // the delay between characters in the dialogue text scrolling (smaller = faster)
     // 0.01 fast, 0.05 medium, 0.1 slow
-    [SerializeField] private float textScrollDelay;
+    [SerializeField] private float _textScrollDelay;
     
     // Canvas text for dialogue
-    [SerializeField] private Text displayText;
+    [SerializeField] private Text _displayText;
     
     // image to signal that player can move to next dialogue line
-    [SerializeField] private Image nextPageImage;
-    [SerializeField] private Image dialogueBackgroundImage;
-    private PlayerControls PlayerControls;
+    [SerializeField] private Image _nextPageImage;
+    [SerializeField] private Image _dialogueBackgroundImage;
+    private PlayerControls _playerControls;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerControls = FindObjectOfType<PlayerControls>();
+        _playerControls = FindObjectOfType<PlayerControls>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Enemy enemy = null)
     {
-        
-    }
-
-    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null)
-    {
-        if (isInteracting) return;
-        isInteracting = true;
-        PlayerControls.Disabled = true;
+        if (_isInteracting) return;
+        _isInteracting = true;
+        _playerControls.Disabled = true;
         switch (type)
         {
             case InteractionType.Speak:
@@ -50,7 +44,8 @@ public class Interactor : MonoBehaviour
             case InteractionType.Rest:
                 // do resting func (go.startrest(), etc)
             case InteractionType.Battle:
-                // start battle
+                StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(enemy)));
+                break;
             case InteractionType.Shop:
                 // open shop
                 break;
@@ -61,37 +56,41 @@ public class Interactor : MonoBehaviour
     {
         // this coroutine chops each line up into a char array and then
         // displays each char in order to simulate scroll effect
-        dialogueBackgroundImage.enabled = true;
-        displayText.text = "";
-        displayText.enabled = true;
+        _dialogueBackgroundImage.enabled = true;
+        _displayText.text = "";
+        _displayText.enabled = true;
         foreach (var line in dialogue)
         {
             var characters = line.ToCharArray();
             foreach (var c in characters)
             {
-                displayText.text += c;
-                yield return new WaitForSeconds(textScrollDelay);
+                _displayText.text += c;
+                yield return new WaitForSeconds(_textScrollDelay);
             }
             while (!Input.GetKeyDown(KeyCode.E))
             {
-                nextPageImage.enabled = true;
+                _nextPageImage.enabled = true;
                 yield return null;
             }
-            nextPageImage.enabled = false;
-            displayText.text = "";
+            _nextPageImage.enabled = false;
+            _displayText.text = "";
         }
-        dialogueBackgroundImage.enabled = false;
-        displayText.enabled = false;
+        _dialogueBackgroundImage.enabled = false;
+        _displayText.enabled = false;
         postDialogueAction?.Invoke();
+    }
+
+    public void StartBattle(Enemy enemy) 
+    {
+        UIManager ui = FindObjectOfType<UIManager>();
+        ui.StartBattle(enemy, EndInteraction);
     }
 
     public void EndInteraction()
     {
-        isInteracting = false;
-        PlayerControls.Disabled = false;
+        _isInteracting = false;
+        _playerControls.Disabled = false;
     }
     
-    public bool IsInteracting => isInteracting;
-    
-    
+    public bool IsInteracting => _isInteracting;
 }
