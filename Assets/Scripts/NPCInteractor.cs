@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Make sure collider acts as trigger
 [RequireComponent(typeof(CircleCollider2D))]
@@ -23,13 +24,19 @@ public class NPCInteractor : MonoBehaviour
     // Is player in range of this npc?
     private bool _inRange;
     
-    // Icon to appear above their head (if we want) when in range to signal intractability.
-    private SpriteRenderer _icon;
+    // (Optional) Icon to appear above their head when in range to signal intractability.
+    private SpriteRenderer _iconRenderer;
+    [SerializeField] private Sprite _iconSprite;
     
     // Start is called before the first frame update
     void Start()
     {
         _playerInteractor = FindObjectOfType<Interactor>();
+        _iconRenderer = ((GameObject)Instantiate(Resources.Load("Icons/IconPrefab"), 
+            new Vector3(transform.position.x, transform.position.y + 1.2f), Quaternion.identity, 
+            transform
+        )).GetComponent<SpriteRenderer>();
+        if (_iconSprite != null) _iconRenderer.sprite = _iconSprite;
     }
 
     // Update is called once per frame
@@ -45,12 +52,12 @@ public class NPCInteractor : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         _inRange = true;
-        // icon.enabled = true;
+        if (_iconSprite != null) _iconRenderer.enabled = true;
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         _inRange = false;
-        // icon.enabled = false;
+        if (_iconSprite != null) _iconRenderer.enabled = false;
     }
 }
