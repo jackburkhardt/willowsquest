@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,15 +16,17 @@ public class UIManager : MonoBehaviour
     private Action[] _inventoryUseActions;
 
     public Canvas StatsCanvas;
+    public GameObject StatsButtons;
 
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
-    private Action<string> _battleTurnAction;
+    private Enemy  _battleEnemy;
     private Action _postBattleAction;
 
     public Canvas GameOverCanvas;
 
     public PlayerControls PlayerControls;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,15 +52,21 @@ public class UIManager : MonoBehaviour
     public void StartBattle(Enemy enemy, Action postBattleAction)
     {
         BattleSprite.sprite = enemy.Sprite;
-        _battleTurnAction = enemy.OnBattleTurn;
+        _battleEnemy = enemy;
         _postBattleAction = postBattleAction;
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
+        ToggleCanvas(StatsCanvas, true);
+
+        // Randomly decide who will act first in the battle
+        if (Random.Range(0f,1f) < 0.5) {
+            OnBattleTurn("nop");
+        }
     }
 
     public void OnBattleTurn(string turn) {
-        _battleTurnAction.Invoke(turn);
+        StartCoroutine(_battleEnemy.OnBattleTurn(turn));
     }
 
     public void QuitBattle()
@@ -67,11 +76,8 @@ public class UIManager : MonoBehaviour
         SetCanvas(UICanvas);
     }
 
-    public void OpenInventory(ref List<Item> inventoryItems)
+    public void OpenInventory()
     {
-        PlayerControls.Disabled = true;
-
-        RenderInventory(ref inventoryItems);
         ToggleCanvas(InventoryCanvas, true);
     }
     
@@ -103,44 +109,40 @@ public class UIManager : MonoBehaviour
     public void CloseInventory()
     {
         ToggleCanvas(InventoryCanvas, false);
-
-        PlayerControls.Disabled = false;
     }
 
-    public void OpenStats(ref Attributes attributes)
+    public void OpenAttributes()
     {
-        PlayerControls.Disabled = true;
-
-        RenderStats(ref attributes);
         ToggleCanvas(StatsCanvas, true);
     }
 
-    void RenderStats(ref Attributes a)
+    public void RenderAttributes(Attributes a, Text t)
     {
-        Text text = StatsCanvas.GetComponentInChildren<Text>(true);
-        text.text = String.Format("HP\t\t{0:N0}\nATK\t\t{1:N0}\nDEF\t\t{2:N0}\nSPD\t\t{3:N0}\nMD\t\t{4}",
-            a.HP, a.ATK, a.DEF, a.SPD, a.MD.ToString());
+        t.text = String.Format("HP\t\t{0:N0}\nATK\t\t{1:N0}\nDEF\t\t{2:N0}\nSPD\t\t{3:N0}\nMD\t\t{4}\nEXP\t\t{5:N0}",
+            a.HP, a.ATK, a.DEF, a.SPD, a.MD.ToString(), a.EXP);
+        
+        if (a.PlayerAttributes)
+        {
+            Image[] buttons = StatsButtons.GetComponentsInChildren<Image>(true);
+            bool enabled  = a.EXP >= 1f;
+            foreach (var button in buttons)
+            {
+                button.enabled = enabled;
+            }
+        }
     }
 
-    public void CloseStats()
+    public void CloseAttributes()
     {
         ToggleCanvas(StatsCanvas, false);
-
-        PlayerControls.Disabled = false;
     }
 
     void SetCanvas(Canvas canvas)
     {
         foreach (var c in new Canvas[6] {StartCanvas, UICanvas, InventoryCanvas, StatsCanvas, BattleCanvas, GameOverCanvas})
         {
-            if (c.name.Equals(canvas.name))
-            {
-                c.enabled = true;
-            }
-            else
-            {
-                c.enabled = false;
-            }
+            if (c.name.Equals(canvas.name)) c.enabled = true;
+            else c.enabled = false;
         }
     }
 

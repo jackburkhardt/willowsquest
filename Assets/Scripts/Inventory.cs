@@ -7,34 +7,18 @@ public class Inventory : MonoBehaviour
     public int Capacity = 10;
     public List<Item> Items = new List<Item>();
     public bool Full = false;
-    
-    private bool _isOpen = false;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            UIManager ui = FindObjectOfType<UIManager>();
-            if (_isOpen) 
-            {
-                ui.CloseInventory();
-                _isOpen = false;
-            } 
-            else 
-            {
-                ui.OpenInventory(ref Items);
-                _isOpen = true;
-            }
-        }
+        UpdateUI();
     }
-
+    
     public bool Store(Item item)
     {
         if (Full) return false;
 
         Items.Add(item);
-        if (_isOpen) UpdateUI();
+        UpdateUI();
 
         if (Items.Count == Capacity) Full = true;
 
@@ -47,7 +31,7 @@ public class Inventory : MonoBehaviour
         if (Full) Full = false;
 
         Items.Remove(item);
-        if (_isOpen) UpdateUI();
+        UpdateUI();
 
         return true;
     }

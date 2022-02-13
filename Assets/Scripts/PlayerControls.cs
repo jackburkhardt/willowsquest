@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,18 @@ public class PlayerControls : MonoBehaviour
     private Rigidbody2D _rb;
     public float MovementScale = 1;
 
+    private bool _attributesOpen = false;
+    private bool _inventoryOpen = false;
+
+    private UIManager _ui;
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0f;
+
+        _ui = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
@@ -50,19 +58,39 @@ public class PlayerControls : MonoBehaviour
             _rb.AddRelativeForce(Vector2.left * MovementScale, ForceMode2D.Impulse);
         }
 
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             _rb.AddRelativeForce(Vector2.right * MovementScale, ForceMode2D.Impulse);
         }
 
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             _rb.AddRelativeForce(Vector2.up * MovementScale, ForceMode2D.Impulse);
         }
 
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             _rb.AddRelativeForce(Vector2.down * MovementScale, ForceMode2D.Impulse);
+        }
+
+        CheckMenu(KeyCode.I, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
+        CheckMenu(KeyCode.Q, ref _attributesOpen, _ui.OpenAttributes, _ui.CloseAttributes);
+   }
+
+    private void CheckMenu(KeyCode key, ref bool open, Action openAction, Action closeAction)
+    {
+        if (Input.GetKeyDown(key))
+        {
+            if (open)
+            {
+                closeAction.Invoke();
+                open = false;
+            }
+            else
+            {
+                openAction.Invoke();
+                open = true;
+            }
         }
     }
 }
