@@ -23,32 +23,44 @@ public class Enemy : MonoBehaviour
         Attributes = GetComponent<Attributes>();
 
         _playerAttributes = FindObjectOfType<Player>().Attributes;
-        _playerCooldowns = FindObjectOfType<Player>().Cooldowns;
+        _playerCooldowns = new Dictionary<string, int>();
     }
 
-    public IEnumerator OnBattleTurn(string message)
+    public IEnumerator OnBattleTurn(string message, Action<List<string>> postTurnAction = null)
     {
         message = message.ToLower();
+
+        _updateCooldowns();
 
         // First the player does some action 
         switch (message)
         {
             case "scratch":
-            case "bite":
-            case "kick":
-                _doPlayerAttack(message);
+                _doPlayerAttack("scratch");
+                _playerCooldowns["scratch"] = 1;
                 break;
-            default:
+            case "bite":
+                _doPlayerAttack("bite");
+                _playerCooldowns["bite"] = 6;
+                break;
+            case "kick":
+                _doPlayerAttack("kick");
+                _playerCooldowns["kick"] = 3;
+                break;
             case "rest":
                 float heal = Random.Range(5f, 25f);
                 _playerAttributes.UpdateHealth(heal);
+                _playerCooldowns["rest"] = 1;
                 break;
             case "flee":
                 if (_calculateMiss(_playerAttributes.SPD, Attributes.SPD, false)) _endBattle();
+                _playerCooldowns["flee"] = 1;
+                break;
+            default:
                 break;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // If the enemy runs out of health, trigger destory and call back to UIManager to quit the battle
         if (Attributes.HP <= 0)
@@ -59,6 +71,7 @@ public class Enemy : MonoBehaviour
         }
 
         _doEnemyAttack();
+        postTurnAction?.Invoke(new List<string>(_playerCooldowns.Keys));
     }
 
     private void _doPlayerAttack(string type)
@@ -119,6 +132,17 @@ public class Enemy : MonoBehaviour
             // If this is a an enemy's attack on the player
             (Difficulty is DifficultyLevel.Easy)   ? 0.5f :
             (Difficulty is DifficultyLevel.Medium) ? 1f   : 1.5f;
+    }
+
+    private void _updateCooldowns()
+    {
+        Dictionary<string, int> cooldowns = new Dictionary<string, int>();
+        foreach (var item in _playerCooldowns)
+        {
+            int cooldown = item.Value - 1;
+            if (cooldown > 0) cooldowns[item.Key] = cooldown;
+        }
+        _playerCooldowns = cooldowns;
     }
 
     private void _endBattle()

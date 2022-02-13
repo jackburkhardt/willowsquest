@@ -65,8 +65,33 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnBattleTurn(string turn) {
-        StartCoroutine(_battleEnemy.OnBattleTurn(turn));
+    public void OnBattleTurn(string turn) 
+    {
+        DisableBattleButtons();
+        StartCoroutine(_battleEnemy.OnBattleTurn(turn, EnableBattleButtons));
+    }
+
+    void DisableBattleButtons()
+    {
+        Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
+        foreach (var button in buttons)
+        {
+            Debug.Log("disabling button");
+            button.interactable = false;
+        }
+    }
+
+    void EnableBattleButtons(List<string> cooldowns)
+    {
+        Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
+        foreach (var button in buttons)
+        {
+            if (!cooldowns.Contains(button.name.ToLower())) 
+            {
+                Debug.Log(button.name);
+                button.interactable = true;
+            }
+        }
     }
 
     public void QuitBattle()
