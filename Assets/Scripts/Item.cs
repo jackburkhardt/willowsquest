@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
     public virtual void Use()
     {
         Inventory i = FindObjectOfType<Player>().Inventory;
+        GameTracker.itemsUsedSinceLastCheckpoint.Add(this);
         i.Remove(this);
 
         // Maybe we want to make this not a MonoBehaviour?

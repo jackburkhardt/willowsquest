@@ -67,6 +67,10 @@ public class Enemy : MonoBehaviour
         {
             _playerAttributes.EXP += Attributes.EXP;
             _endBattle();
+            UIManager ui = FindObjectOfType<UIManager>();
+            ui.QuitBattle();
+            GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
+            
             Destroy(gameObject);
         }
 
