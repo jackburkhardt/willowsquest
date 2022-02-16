@@ -42,16 +42,24 @@ public class NPCInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_inRange && !_playerInteractor.IsInteracting && 
-            (_interactionType is InteractionType.Battle || Input.GetKeyDown(KeyCode.E)))
+        if (_inRange && !_playerInteractor.IsInteracting)
         {
-            _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
+            }
+            else if (_interactionType is InteractionType.Battle) 
+            {
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
+                _inRange = false;
+            }
+        } 
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         _inRange = true;
+        Debug.Log(_iconSprite);
         if (_iconSprite != null) _iconRenderer.enabled = true;
     }
 

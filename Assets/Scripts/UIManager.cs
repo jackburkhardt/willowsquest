@@ -76,7 +76,6 @@ public class UIManager : MonoBehaviour
         Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
         foreach (var button in buttons)
         {
-            Debug.Log("disabling button");
             button.interactable = false;
         }
     }
@@ -88,7 +87,6 @@ public class UIManager : MonoBehaviour
         {
             if (!cooldowns.Contains(button.name.ToLower())) 
             {
-                Debug.Log(button.name);
                 button.interactable = true;
             }
         }
