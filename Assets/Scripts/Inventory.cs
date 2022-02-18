@@ -5,11 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public int Capacity = 10;
-    public List<Item> Items = new List<Item>();
+    public List<Item> Items;
     public bool Full = false;
 
     void Start()
     {
+        Items = new List<Item>();
         UpdateUI();
     }
     

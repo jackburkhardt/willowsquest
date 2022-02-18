@@ -12,14 +12,6 @@ public class Player : MonoBehaviour
     public Dictionary<string, int> Cooldowns;
     public Image HealthBar;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Attributes = GetComponent<Attributes>();
-        Inventory  = GetComponent<Inventory>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Attributes.HP < 0)

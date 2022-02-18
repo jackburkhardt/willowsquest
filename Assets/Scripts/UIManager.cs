@@ -15,8 +15,8 @@ public class UIManager : MonoBehaviour
     public GameObject InventorySlots;
     private Action[] _inventoryUseActions;
 
-    public Canvas StatsCanvas;
-    public GameObject StatsButtons;
+    public Canvas AttributesCanvas;
+    public GameObject AttributesButtons;
 
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
-        ToggleCanvas(StatsCanvas, true);
+        ToggleCanvas(AttributesCanvas, true);
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenAttributes()
     {
-        ToggleCanvas(StatsCanvas, true);
+        ToggleCanvas(AttributesCanvas, true);
     }
 
     public void RenderAttributes(Attributes a, Text t)
@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
         
         if (a.PlayerAttributes)
         {
-            Image[] buttons = StatsButtons.GetComponentsInChildren<Image>(true);
+            Image[] buttons = AttributesButtons.GetComponentsInChildren<Image>(true);
             bool enabled  = a.EXP >= 1f;
             foreach (var button in buttons)
             {
@@ -157,12 +157,12 @@ public class UIManager : MonoBehaviour
 
     public void CloseAttributes()
     {
-        ToggleCanvas(StatsCanvas, false);
+        ToggleCanvas(AttributesCanvas, false);
     }
 
     void SetCanvas(Canvas canvas)
     {
-        foreach (var c in new Canvas[6] {StartCanvas, UICanvas, InventoryCanvas, StatsCanvas, BattleCanvas, GameOverCanvas})
+        foreach (var c in new Canvas[6] {StartCanvas, UICanvas, InventoryCanvas, AttributesCanvas, BattleCanvas, GameOverCanvas})
         {
             if (c.name.Equals(canvas.name)) c.enabled = true;
             else c.enabled = false;
