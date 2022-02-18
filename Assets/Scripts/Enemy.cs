@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         _updateCooldowns();
 
         // First the player does some action 
+        bool flee = false;
         switch (message)
         {
             case "scratch":
@@ -53,7 +54,11 @@ public class Enemy : MonoBehaviour
                 _playerCooldowns["rest"] = 1;
                 break;
             case "flee":
-                if (_calculateMiss(_playerAttributes.SPD, Attributes.SPD, false)) _endBattle();
+                if (!_calculateMiss(_playerAttributes.SPD, Attributes.SPD, true))
+                {
+                    _endBattle();
+                    flee = true;
+                }
                 _playerCooldowns["flee"] = 1;
                 break;
             default:
@@ -67,14 +72,12 @@ public class Enemy : MonoBehaviour
         {
             _playerAttributes.EXP += Attributes.EXP;
             _endBattle();
-            UIManager ui = FindObjectOfType<UIManager>();
-            ui.QuitBattle();
             GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
             
             Destroy(gameObject);
         }
 
-        _doEnemyAttack();
+        if (!flee) _doEnemyAttack();
         postTurnAction?.Invoke(new List<string>(_playerCooldowns.Keys));
     }
 
