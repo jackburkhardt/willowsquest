@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Attributes))]
@@ -15,6 +16,10 @@ public class Enemy : MonoBehaviour
     private Dictionary<string, int> _playerCooldowns;
 
     private bool _weakened = false;
+
+    [SerializeField] private float _textScrollDelay;
+    [SerializeField] private Text  _displayText;
+    [SerializeField] private Image _dialogueBackgroundImage;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +57,7 @@ public class Enemy : MonoBehaviour
                 float heal = Random.Range(5f, 25f);
                 _playerAttributes.UpdateHealth(heal);
                 _playerCooldowns["rest"] = 1;
+                StartCoroutine(_displayDialogue(String.Format("You rested for {0:N0} HP!", heal)));
                 break;
             case "flee":
                 if (!_calculateMiss(_playerAttributes.SPD, Attributes.SPD, true))
@@ -59,16 +65,18 @@ public class Enemy : MonoBehaviour
                     _endBattle();
                     flee = true;
                 }
+                else StartCoroutine(_displayDialogue("You failed to flee!"));
                 _playerCooldowns["flee"] = 1;
                 break;
             default:
+                StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
                 break;
         }
 
         yield return new WaitForSeconds(2f);
 
         // If the enemy runs out of health, trigger destory and call back to UIManager to quit the battle
-        if (Attributes.HP <= 0)
+        if (Attributes.HP < 1)
         {
             _playerAttributes.EXP += Attributes.EXP;
             _endBattle();
@@ -76,14 +84,20 @@ public class Enemy : MonoBehaviour
             
             Destroy(gameObject);
         }
+        else if (!flee) _doEnemyAttack();
 
-        if (!flee) _doEnemyAttack();
+        yield return new WaitForSeconds(2f);
+
         postTurnAction?.Invoke(new List<string>(_playerCooldowns.Keys));
     }
 
     private void _doPlayerAttack(string type)
     {
-        if (type.Equals("kick") && _calculateMiss(_playerAttributes.SPD, Attributes.SPD, true)) return;
+        if (type.Equals("kick") && _calculateMiss(_playerAttributes.SPD, Attributes.SPD, true))
+        {
+            StartCoroutine(_displayDialogue("You missed!"));
+            return;
+        }
 
         float damage = (type.Equals("scratch")) ? 10 :
                        (type.Equals("kick"))    ? 20 :
@@ -99,6 +113,7 @@ public class Enemy : MonoBehaviour
         
         if (type.Equals("bite")) _weakened = true;
 
+        StartCoroutine(_displayDialogue(String.Format("You attacked the enemy for {0:N0} HP!", damage + advantage)));
         Attributes.UpdateHealth(-(damage + advantage));
     }
 
@@ -108,7 +123,19 @@ public class Enemy : MonoBehaviour
         float maxDamage = (Difficulty is DifficultyLevel.Easy)   ? 15 :
                           (Difficulty is DifficultyLevel.Medium) ? 25 : 50;
         float damage = Random.Range(5f, maxDamage);
+
+        StartCoroutine(_displayDialogue(String.Format("The enemy attacked you for {0:N0} HP!", damage + advantage)));
         _playerAttributes.UpdateHealth(-(damage + advantage));
+    }
+
+    private IEnumerator _displayDialogue(string dialogue)
+    {
+        _displayText.text = "";
+        foreach (var ch in dialogue)
+        {
+            _displayText.text += ch;
+            yield return new WaitForSeconds(_textScrollDelay);
+        }
     }
 
     private float _calculateAdvantage(Attributes attack, Attributes defend, bool player)
@@ -154,6 +181,7 @@ public class Enemy : MonoBehaviour
 
     private void _endBattle()
     {
+        _displayText.text = "";
         UIManager ui = FindObjectOfType<UIManager>();
         ui.QuitBattle();
     }

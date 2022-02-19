@@ -11,10 +11,12 @@ public class Player : MonoBehaviour
     public Inventory  Inventory;
     public Dictionary<string, int> Cooldowns;
     public Image HealthBar;
+    
+    [SerializeField] private float _lerpSpeed;
 
     void Update()
     {
-        if (Attributes.HP < 0)
+        if (Attributes.HP < 1)
         {
             UIManager ui = FindObjectOfType<UIManager>();
             ui.GameOver();
@@ -24,6 +26,9 @@ public class Player : MonoBehaviour
 
     private void UpdateHealth(float health)
     {
-        HealthBar.fillAmount = Mathf.Clamp(health/100f, 0, 1f);
+        HealthBar.fillAmount = Mathf.Lerp(
+            HealthBar.fillAmount,
+            Mathf.Clamp(health/100f, 0, 1f),
+            _lerpSpeed);
     }
 }

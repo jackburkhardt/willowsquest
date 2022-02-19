@@ -9,7 +9,7 @@ public class HealthPotion : Item
     public override void Use()
     {
         Attributes a = FindObjectOfType<Player>().Attributes;
-        a.HP += Amount;
+        a.UpdateHealth(Amount);
 
         base.Use();
     }
