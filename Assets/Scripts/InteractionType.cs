@@ -2,6 +2,6 @@
 {
     Speak,
     Battle,
-    Shop,
+    Give,
     Rest
 }

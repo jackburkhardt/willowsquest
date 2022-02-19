@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public Canvas StartCanvas;
 
     public Canvas UICanvas;
+    public Dictionary<GameState, string> objectiveDescriptions;
 
     public Canvas InventoryCanvas;
     public GameObject InventorySlots;
@@ -27,6 +28,25 @@ public class UIManager : MonoBehaviour
 
     public PlayerControls PlayerControls;
 
+
+    private void Awake()
+    {
+        objectiveDescriptions = new Dictionary<GameState, string>()
+        {
+            {GameState.Start, "Talk to the people around here to figure out where you are."},
+            {GameState.FightSquirrels, "Fight off the squirrels. One of them probably has the key."},
+            {GameState.Stump, "Grab the key from the stump and open the gate."},
+            {GameState.MeetCobra, "Talk to the Cobra King."},
+            {GameState.FightSkunks, "Go \"talk\" to the skunks."},
+            {GameState.GiveCrown, "Return the crown to the Cobra King."},
+            {GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
+            {GameState.MeetFrog, "Talk to the esteemed frog blocking the path."},
+            {GameState.FindWorms, "Find the worms. They should be in a small pot somewhere."},
+            {GameState.GiveWorms, "Give the (very slimy) worms to Dr. Frog"},
+            {GameState.FightBear, "OH NO! A BEAR!"},
+            {GameState.Finish, "Reunite with your gelatin friend!"}
+        };
+    }
 
     // Start is called before the first frame update
     void Start()

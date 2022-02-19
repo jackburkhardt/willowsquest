@@ -1,0 +1,2472 @@
+fileFormatVersion: 2
+guid: 944914a75b88c034ea94db31f20a1b45
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1672272347761306166
+    second: free_walking_sprites_0
+  - first:
+      213: -320288906459290319
+    second: free_walking_sprites_1
+  - first:
+      213: -6055011516155608061
+    second: free_walking_sprites_2
+  - first:
+      213: 4359513789421076805
+    second: free_walking_sprites_3
+  - first:
+      213: -5054453260997085039
+    second: free_walking_sprites_4
+  - first:
+      213: 1582647464127250959
+    second: free_walking_sprites_5
+  - first:
+      213: 795244259054018868
+    second: free_walking_sprites_6
+  - first:
+      213: -3831214881169791254
+    second: free_walking_sprites_7
+  - first:
+      213: -2852975762695999788
+    second: free_walking_sprites_8
+  - first:
+      213: 5103673851489207574
+    second: free_walking_sprites_9
+  - first:
+      213: -5868680123111943134
+    second: free_walking_sprites_10
+  - first:
+      213: 5779949831617759026
+    second: free_walking_sprites_11
+  - first:
+      213: -6983542911344464098
+    second: free_walking_sprites_12
+  - first:
+      213: -764203841017614268
+    second: free_walking_sprites_13
+  - first:
+      213: 7950276595171349703
+    second: free_walking_sprites_14
+  - first:
+      213: 6045710211526588884
+    second: free_walking_sprites_15
+  - first:
+      213: -9097423372527518245
+    second: free_walking_sprites_16
+  - first:
+      213: -3236314498227004328
+    second: free_walking_sprites_17
+  - first:
+      213: 1029368739067296332
+    second: free_walking_sprites_18
+  - first:
+      213: 7276537276335369906
+    second: free_walking_sprites_19
+  - first:
+      213: 7628520159438328910
+    second: free_walking_sprites_20
+  - first:
+      213: 7002633227874083005
+    second: free_walking_sprites_21
+  - first:
+      213: -5999650137727522157
+    second: free_walking_sprites_22
+  - first:
+      213: 6948698477977962891
+    second: free_walking_sprites_23
+  - first:
+      213: 7595491588502208262
+    second: free_walking_sprites_24
+  - first:
+      213: 7349538990286616393
+    second: free_walking_sprites_25
+  - first:
+      213: 8448191213648962102
+    second: free_walking_sprites_26
+  - first:
+      213: -7042514563537794039
+    second: free_walking_sprites_27
+  - first:
+      213: 2682206714563245505
+    second: free_walking_sprites_28
+  - first:
+      213: -425507552010853252
+    second: free_walking_sprites_29
+  - first:
+      213: 910455943471622279
+    second: free_walking_sprites_30
+  - first:
+      213: 8036395731165181439
+    second: free_walking_sprites_31
+  - first:
+      213: 1170748942088550409
+    second: free_walking_sprites_32
+  - first:
+      213: -3885125096538745132
+    second: free_walking_sprites_33
+  - first:
+      213: -2009444485110227636
+    second: free_walking_sprites_34
+  - first:
+      213: -733546765103048666
+    second: free_walking_sprites_35
+  - first:
+      213: 2086813469550067264
+    second: free_walking_sprites_36
+  - first:
+      213: -593383723298975982
+    second: free_walking_sprites_37
+  - first:
+      213: -704004157251946681
+    second: free_walking_sprites_38
+  - first:
+      213: 846768003892135862
+    second: free_walking_sprites_39
+  - first:
+      213: -4946007928455271299
+    second: free_walking_sprites_40
+  - first:
+      213: 6120215993429444657
+    second: free_walking_sprites_41
+  - first:
+      213: 863979932887823458
+    second: free_walking_sprites_42
+  - first:
+      213: 5481238418913594658
+    second: free_walking_sprites_43
+  - first:
+      213: -6952985822693906515
+    second: free_walking_sprites_44
+  - first:
+      213: 7855391678633680047
+    second: free_walking_sprites_45
+  - first:
+      213: -3454026663293067363
+    second: free_walking_sprites_46
+  - first:
+      213: -8132704759310286041
+    second: free_walking_sprites_47
+  - first:
+      213: -3865306362517928319
+    second: free_walking_sprites_48
+  - first:
+      213: 8605877944740585193
+    second: free_walking_sprites_49
+  - first:
+      213: -7503129577419991723
+    second: free_walking_sprites_50
+  - first:
+      213: -9572470012985087
+    second: free_walking_sprites_51
+  - first:
+      213: -2462658451402521121
+    second: free_walking_sprites_52
+  - first:
+      213: -82258025643597682
+    second: free_walking_sprites_53
+  - first:
+      213: -8163031875242084909
+    second: free_walking_sprites_54
+  - first:
+      213: 3216569315829700933
+    second: free_walking_sprites_55
+  - first:
+      213: 3865692920467857098
+    second: free_walking_sprites_56
+  - first:
+      213: 6518219287067338260
+    second: free_walking_sprites_57
+  - first:
+      213: 440930053725971533
+    second: free_walking_sprites_58
+  - first:
+      213: -2189003530420078822
+    second: free_walking_sprites_59
+  - first:
+      213: 8277726824159223573
+    second: free_walking_sprites_60
+  - first:
+      213: -9118141864100233861
+    second: free_walking_sprites_61
+  - first:
+      213: 3348543176811892532
+    second: free_walking_sprites_62
+  - first:
+      213: -3048929197088352799
+    second: free_walking_sprites_63
+  - first:
+      213: 6925497540793358409
+    second: free_walking_sprites_64
+  - first:
+      213: -3483032445201715721
+    second: free_walking_sprites_65
+  - first:
+      213: 4695139453688658584
+    second: free_walking_sprites_66
+  - first:
+      213: -8614256729762262587
+    second: free_walking_sprites_67
+  - first:
+      213: -2504096326377418161
+    second: free_walking_sprites_68
+  - first:
+      213: 7597461310692536468
+    second: free_walking_sprites_69
+  - first:
+      213: 1958978133386379967
+    second: free_walking_sprites_70
+  - first:
+      213: 7855665040110145673
+    second: free_walking_sprites_71
+  - first:
+      213: -1783544714160294736
+    second: free_walking_sprites_72
+  - first:
+      213: 5157398137306274861
+    second: free_walking_sprites_73
+  - first:
+      213: 5556469459708790111
+    second: free_walking_sprites_74
+  - first:
+      213: -502160584370783889
+    second: free_walking_sprites_75
+  - first:
+      213: 5531135249338863149
+    second: free_walking_sprites_76
+  - first:
+      213: 905883334738128209
+    second: free_walking_sprites_77
+  - first:
+      213: -2198453882574713546
+    second: free_walking_sprites_78
+  - first:
+      213: 2076450487361477565
+    second: free_walking_sprites_79
+  - first:
+      213: 1971602923582592293
+    second: free_walking_sprites_80
+  - first:
+      213: -5102045164164537391
+    second: free_walking_sprites_81
+  - first:
+      213: 252467088837621702
+    second: free_walking_sprites_82
+  - first:
+      213: -5470893662280154780
+    second: free_walking_sprites_83
+  - first:
+      213: -655759310468384919
+    second: free_walking_sprites_84
+  - first:
+      213: 166908486799415810
+    second: free_walking_sprites_85
+  - first:
+      213: -8916801057991193904
+    second: free_walking_sprites_86
+  - first:
+      213: 2328875683959890286
+    second: free_walking_sprites_87
+  - first:
+      213: 3470748625321463836
+    second: free_walking_sprites_88
+  - first:
+      213: 2426634373990686280
+    second: free_walking_sprites_89
+  - first:
+      213: -8818782064131376192
+    second: free_walking_sprites_90
+  - first:
+      213: -4895020757862691567
+    second: free_walking_sprites_91
+  - first:
+      213: -630222614485997200
+    second: free_walking_sprites_92
+  - first:
+      213: -1867817349954726841
+    second: free_walking_sprites_93
+  - first:
+      213: 7936256445315075148
+    second: free_walking_sprites_94
+  - first:
+      213: 1679047905162024479
+    second: free_walking_sprites_95
+  - first:
+      213: 3060482894996109432
+    second: free_walking_sprites_96
+  - first:
+      213: 4852702140103532211
+    second: free_walking_sprites_97
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: free_walking_sprites_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 374
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac59af7e825eac8e0800000000000000
+      internalID: -1672272347761306166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 341
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135eef0cfea1e8bf0800000000000000
+      internalID: -320288906459290319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 374
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30445ac5b1748fba0800000000000000
+      internalID: -6055011516155608061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 373
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5414cdb91ba108c30800000000000000
+      internalID: 4359513789421076805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_4
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 340
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 198347ce989fad9b0800000000000000
+      internalID: -5054453260997085039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_5
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 374
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f024affbb71b6f510800000000000000
+      internalID: 1582647464127250959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 372
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4316592b076490b00800000000000000
+      internalID: 795244259054018868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_7
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 339
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae62fad3d5ac4dac0800000000000000
+      internalID: -3831214881169791254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_8
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 372
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dea4b7d8a13868d0800000000000000
+      internalID: -2852975762695999788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 336
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 615c677d354e3d640800000000000000
+      internalID: 5103673851489207574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 336
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224548985824e8ea0800000000000000
+      internalID: -5868680123111943134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_11
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 336
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237c7259fb1863050800000000000000
+      internalID: 5779949831617759026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_12
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 336
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1fad97f8b8751f90800000000000000
+      internalID: -6983542911344464098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_13
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 336
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 440f720d7a00565f0800000000000000
+      internalID: -764203841017614268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_14
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 336
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c45a41e07e055e60800000000000000
+      internalID: 7950276595171349703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 345
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d97ef4e76da6e350800000000000000
+      internalID: 6045710211526588884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_16
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 345
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd392594a57fb180800000000000000
+      internalID: -9097423372527518245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 346
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c9bbf4c1d4613d0800000000000000
+      internalID: -3236314498227004328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_18
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 346
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a7ff21a6d094e00800000000000000
+      internalID: 1029368739067296332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 346
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2beabde99147bf460800000000000000
+      internalID: 7276537276335369906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_20
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 346
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e445a39daa2fdd960800000000000000
+      internalID: 7628520159438328910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_21
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 294
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db028c7b1d95e2160800000000000000
+      internalID: 7002633227874083005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_22
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 320
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39aa02cbcf5fcbca0800000000000000
+      internalID: -5999650137727522157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_23
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 295
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b898c2f237cbe6060800000000000000
+      internalID: 6948698477977962891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_24
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 320
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f342b6b5b986960800000000000000
+      internalID: 7595491588502208262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_25
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 293
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 947baeaa5cecef560800000000000000
+      internalID: 7349538990286616393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_26
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 319
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6326f1cf5210e3570800000000000000
+      internalID: 8448191213648962102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_27
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 288
+        width: 34
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c80da3156f34e90800000000000000
+      internalID: -7042514563537794039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_28
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 288
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5b5b3cbcc193520800000000000000
+      internalID: 2682206714563245505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_29
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 288
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c74a529c22b481af0800000000000000
+      internalID: -425507552010853252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_30
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 288
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788e4465bd692ac00800000000000000
+      internalID: 910455943471622279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_31
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 288
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5f09eb653078f60800000000000000
+      internalID: 8036395731165181439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_32
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 288
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9083a5eb5f55f3010800000000000000
+      internalID: 1170748942088550409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_33
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 293
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d65ad81f43451ac0800000000000000
+      internalID: -3885125096538745132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_34
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 292
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d132523e40d14e0800000000000000
+      internalID: -2009444485110227636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_35
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 294
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62855e78a1be1d5f0800000000000000
+      internalID: -733546765103048666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 271
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e380d4bc9d5fc10800000000000000
+      internalID: 2086813469550067264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_37
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 245
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21f0445c5a0e3c7f0800000000000000
+      internalID: -593383723298975982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_38
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 272
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 747799ee2ffda36f0800000000000000
+      internalID: -704004157251946681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_39
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 247
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b7482f530350cb00800000000000000
+      internalID: 846768003892135862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_40
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 272
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c68208eff3c5bb0800000000000000
+      internalID: -4946007928455271299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_41
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 246
+        width: 23
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138c60d05006fe450800000000000000
+      internalID: 6120215993429444657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_42
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 240
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26438d0eb297dfb00800000000000000
+      internalID: 863979932887823458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_43
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 240
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22d81981d45411c40800000000000000
+      internalID: 5481238418913594658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_44
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 240
+        width: 34
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7a0069b38028f90800000000000000
+      internalID: -6952985822693906515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_45
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 240
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac1580bc15f30d60800000000000000
+      internalID: 7855391678633680047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_46
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 240
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f50b9cc05d010d0800000000000000
+      internalID: -3454026663293067363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_47
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 240
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7238e2e3c14d22f80800000000000000
+      internalID: -8132704759310286041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_48
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 246
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186cf02b75cab5ac0800000000000000
+      internalID: -3865306362517928319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_49
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 244
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee91a415683e6770800000000000000
+      internalID: 8605877944740585193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_50
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 245
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555972217678fd790800000000000000
+      internalID: -7503129577419991723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_51
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 230
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101c045a3edfddff0800000000000000
+      internalID: -9572470012985087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_52
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 197
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd50a09af21e2ddd0800000000000000
+      internalID: -2462658451402521121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_53
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 230
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80a691f2c2cbdef0800000000000000
+      internalID: -82258025643597682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_54
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 199
+        width: 47
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d5310252c517be80800000000000000
+      internalID: -8163031875242084909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_55
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 229
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549537920cc83ac20800000000000000
+      internalID: 3216569315829700933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_56
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 230
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace9a37da33b5a530800000000000000
+      internalID: 3865692920467857098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_57
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 228
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416afb518ed557a50800000000000000
+      internalID: 6518219287067338260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_58
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 198
+        width: 29
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4461273c8f7e1600800000000000000
+      internalID: 440930053725971533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_59
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 228
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a173c3d03e81f91e0800000000000000
+      internalID: -2189003530420078822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_60
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 192
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f9bb570b460e270800000000000000
+      internalID: 8277726824159223573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_61
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 192
+        width: 35
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7dffaad84ad57180800000000000000
+      internalID: -9118141864100233861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_62
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 192
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f4ee8274a687e20800000000000000
+      internalID: 3348543176811892532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_63
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 192
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e55b369c0700b5d0800000000000000
+      internalID: -3048929197088352799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_64
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 143
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94854db025f4c1060800000000000000
+      internalID: 6925497540793358409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_65
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 192
+        width: 35
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd679ae178c9afc0800000000000000
+      internalID: -3483032445201715721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_66
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 201
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ab80c057c782140800000000000000
+      internalID: 4695139453688658584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_67
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 201
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c190820523047880800000000000000
+      internalID: -8614256729762262587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_68
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 202
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42d9ee88a9af3dd0800000000000000
+      internalID: -2504096326377418161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_69
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 202
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4903a9a1fca9f6960800000000000000
+      internalID: 7597461310692536468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_70
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 144
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2c043bb30bf2b10800000000000000
+      internalID: 1958978133386379967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_71
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 144
+        width: 37
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 980583e9bbde40d60800000000000000
+      internalID: 7855665040110145673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_72
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 144
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4337738839f37e0800000000000000
+      internalID: -1783544714160294736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_73
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 144
+        width: 49
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2cd663e742c29740800000000000000
+      internalID: 5157398137306274861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_74
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f55cf3fb88b8c1d40800000000000000
+      internalID: 5556469459708790111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_75
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69706ceb97f709f0800000000000000
+      internalID: -502160584370783889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_76
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 96
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e0c7d343a82cc40800000000000000
+      internalID: 5531135249338863149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_77
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 96
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15d2307e718529c00800000000000000
+      internalID: 905883334738128209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_78
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 96
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d4e0a77d58d71e0800000000000000
+      internalID: -2198453882574713546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_79
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 96
+        width: 46
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbb1edc77b801dc10800000000000000
+      internalID: 2076450487361477565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_80
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 96
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 525134ab96a8c5b10800000000000000
+      internalID: 1971602923582592293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_81
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 96
+        width: 47
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d329f974f4e139b0800000000000000
+      internalID: -5102045164164537391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_82
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 96
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7b4abca71f08300800000000000000
+      internalID: 252467088837621702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_83
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 96
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4610bdf333b7314b0800000000000000
+      internalID: -5470893662280154780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_84
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 48
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9677069a16646e6f0800000000000000
+      internalID: -655759310468384919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_85
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 48
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a5da9626af05200800000000000000
+      internalID: 166908486799415810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_86
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 48
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da8b955ea8214480800000000000000
+      internalID: -8916801057991193904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_87
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 47
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61697c7814d15020800000000000000
+      internalID: 2328875683959890286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_88
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 48
+        width: 45
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1016f46c739a2030800000000000000
+      internalID: 3470748625321463836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_89
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 48
+        width: 46
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84e97753b132da120800000000000000
+      internalID: 2426634373990686280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_90
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 48
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbfcd3cf646d9580800000000000000
+      internalID: -8818782064131376192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_91
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 48
+        width: 32
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d4e6f3e84611cb0800000000000000
+      internalID: -4895020757862691567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_92
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079e4260fdff047f0800000000000000
+      internalID: -630222614485997200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_93
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 37
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74413ae240e2416e0800000000000000
+      internalID: -1867817349954726841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_94
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4cc86d503f332e60800000000000000
+      internalID: 7936256445315075148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_95
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 144
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16db0c7c2d2d4710800000000000000
+      internalID: 1679047905162024479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_96
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878f6655af4097a20800000000000000
+      internalID: 3060482894996109432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: free_walking_sprites_97
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 0
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3be16adb2e2485340800000000000000
+      internalID: 4852702140103532211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

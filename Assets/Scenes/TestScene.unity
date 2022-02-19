@@ -881,8 +881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b18bdcaac934f2bb119a1d515154c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 1
   Disabled: 0
-  MovementScale: 1
 --- !u!212 &201878364
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1007,8 +1007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d187e4fe3f42486996e7ded8389ac84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attributes: {fileID: 0}
-  Inventory: {fileID: 0}
+  Attributes: {fileID: 201878369}
+  Inventory: {fileID: 201878370}
   HealthBar: {fileID: 1939586389}
 --- !u!114 &201878369
 MonoBehaviour:
@@ -1027,9 +1027,9 @@ MonoBehaviour:
   DEF: 1
   SPD: 1
   MD: 0
-  EXP: 10
-  PlayerAttributes: 1
-  RenderText: {fileID: 1326211373}
+  EXP: 0
+  PlayerAttributes: 0
+  RenderText: {fileID: 0}
 --- !u!114 &201878370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,6 +1179,7 @@ MonoBehaviour:
   - I hear things often get lost under those.
   _enemy: {fileID: 0}
   _iconSprite: {fileID: 21300000, guid: 485445bd88491e34480d28d0cfdf5af8, type: 3}
+  _iconOffset: 0
 --- !u!58 &267656899
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3480,8 +3481,8 @@ MonoBehaviour:
   UICanvas: {fileID: 889900321}
   InventoryCanvas: {fileID: 874167601}
   InventorySlots: {fileID: 1295071026}
-  StatsCanvas: {fileID: 1744075339}
-  StatsButtons: {fileID: 27738514}
+  AttributesCanvas: {fileID: 1744075339}
+  AttributesButtons: {fileID: 27738514}
   BattleCanvas: {fileID: 1040235129}
   BattleSprite: {fileID: 906382768}
   GameOverCanvas: {fileID: 1053709562}
@@ -5009,7 +5010,7 @@ MonoBehaviour:
   MD: 0
   EXP: 1
   PlayerAttributes: 0
-  RenderText: {fileID: 975690313}
+  RenderText: {fileID: 0}
 --- !u!114 &1646195194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5027,6 +5028,7 @@ MonoBehaviour:
   - You've activated my trap card!
   _enemy: {fileID: 1646195191}
   _iconSprite: {fileID: 21300000, guid: 47575ca899f9e5d4f8dcda57b74853f7, type: 3}
+  _iconOffset: 0
 --- !u!1 &1725054954
 GameObject:
   m_ObjectHideFlags: 0

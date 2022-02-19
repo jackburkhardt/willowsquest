@@ -46,7 +46,7 @@ public class Interactor : MonoBehaviour
             case InteractionType.Battle:
                 StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(enemy)));
                 break;
-            case InteractionType.Shop:
+            case InteractionType.Give:
                 // open shop
                 break;
         }
