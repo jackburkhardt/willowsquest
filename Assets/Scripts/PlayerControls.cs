@@ -15,6 +15,8 @@ public class PlayerControls : MonoBehaviour
     private bool _attributesOpen = false;
     private bool _inventoryOpen = false;
 
+    private Animator anim;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -23,9 +25,12 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
+        anim = GetComponent<Animator>();
+
         if (Disabled) 
         {
             _rb.velocity = Vector2.zero;
+            anim.StopPlayback();
             return;
         }
 
@@ -33,19 +38,23 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             dir.x = -1;
+            anim.Play("willowleft");
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             dir.x = 1;
+            anim.Play("willowright");
         }
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             dir.y = 1;
+            anim.Play("willowbackwards");
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             dir.y = -1;
+            anim.Play("willowforward");
         }
 
         dir.Normalize();
