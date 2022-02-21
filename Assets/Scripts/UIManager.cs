@@ -27,14 +27,7 @@ public class UIManager : MonoBehaviour
 
     public PlayerControls PlayerControls;
 
-
-<<<<<<< Updated upstream
-=======
-    private void Awake()
-    {
-    }
-
->>>>>>> Stashed changes
+    
     // Start is called before the first frame update
     void Start()
     {

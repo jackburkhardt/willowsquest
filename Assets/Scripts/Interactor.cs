@@ -49,10 +49,6 @@ public class Interactor : MonoBehaviour
             case InteractionType.Battle:
                 StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(enemy)));
                 break;
-<<<<<<< Updated upstream
-            case InteractionType.Shop:
-                // open shop
-=======
             case InteractionType.PickUp:
                 StartCoroutine(DisplayDialogue(new List<string>
                 {
@@ -66,7 +62,6 @@ public class Interactor : MonoBehaviour
                 {
                     "The " + item.Name + " was removed from your inventory."
                 }, () => GiveItem(item)));
->>>>>>> Stashed changes
                 break;
         }
     }
