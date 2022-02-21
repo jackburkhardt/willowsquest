@@ -21,6 +21,9 @@ public class NPCInteractor : MonoBehaviour
     // (Optional) enemy information if this is an enemy
     [SerializeField] private Enemy _enemy;
     
+    // (Optional) item information if this NPC needs to hold/recieve an item
+    [SerializeField] private Item _item;
+    
     // Is player in range of this npc?
     private bool _inRange;
     
@@ -45,11 +48,11 @@ public class NPCInteractor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy, _item);
             }
             else if (_interactionType is InteractionType.Battle) 
             {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy);
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy, _item);
                 _inRange = false;
             }
         } 
