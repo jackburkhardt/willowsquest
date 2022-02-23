@@ -165,8 +165,8 @@ public class UIManager : MonoBehaviour
 
     public void RenderAttributes(Attributes a, Text t)
     {
-        t.text = String.Format("HP\t\t{0:N0}\nATK\t\t{1:N0}\nDEF\t\t{2:N0}\nSPD\t\t{3:N0}\nMD\t\t{4}\nEXP\t\t{5:N0}",
-            a.HP, a.ATK, a.DEF, a.SPD, a.MD.ToString(), a.EXP);
+        t.text = String.Format("ATK\t\t{0:N0}\nDEF\t\t{1:N0}\nSPD\t\t{2:N0}\nMD\t\t{3}\nEXP\t\t{4:N0}",
+            a.ATK, a.DEF, a.SPD, a.MD.ToString(), a.EXP);
         
         if (a.PlayerAttributes)
         {

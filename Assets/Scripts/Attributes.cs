@@ -13,7 +13,7 @@ public class Attributes : MonoBehaviour
 
     // To display attributes
     public Image HealthBar;
-    [SerializeField] private float _lerpSpeed = 0.01f;
+    [SerializeField] private float _lerpSpeed = 0.1f;
     public Text RenderText;
 
     // Player-only fields and logic
