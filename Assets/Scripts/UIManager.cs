@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
-    private Enemy  _battleEnemy;
+    private Battle _battleInstance;
     private Action _postBattleAction;
 
     public Canvas GameOverCanvas;
@@ -49,11 +49,13 @@ public class UIManager : MonoBehaviour
         SetCanvas(GameOverCanvas);
     }
 
-    public void StartBattle(Enemy enemy, Action postBattleAction)
+    public void StartBattle(Battle battle, Action postBattleAction)
     {
-        BattleSprite.sprite = enemy.Sprite;
-        _battleEnemy = enemy;
+        BattleSprite.sprite = battle.EnemySprite;
+        _battleInstance = battle;
         _postBattleAction = postBattleAction;
+
+        battle.OnBattleStart();
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
@@ -61,14 +63,14 @@ public class UIManager : MonoBehaviour
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
-            OnBattleTurn("nop");
+            battle.OnBattleTurn("nop");
         }
     }
 
     public void OnBattleTurn(string turn) 
     {
         DisableBattleButtons();
-        StartCoroutine(_battleEnemy.OnBattleTurn(turn, EnableBattleButtons));
+        StartCoroutine(_battleInstance.OnBattleTurn(turn, EnableBattleButtons));
     }
 
     void DisableBattleButtons()
@@ -80,13 +82,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void EnableBattleButtons(List<string> cooldowns)
+    void EnableBattleButtons(Dictionary<string, int> cooldowns)
     {
         Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
+        int cooldown = 0;
+        Text buttonText;
         foreach (var button in buttons)
         {
-            if (!cooldowns.Contains(button.name.ToLower())) 
+            buttonText = button.GetComponentInChildren<Text>();
+            if (cooldowns.TryGetValue(button.name.ToLower(), out cooldown))
             {
+                buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
+            }
+            else
+            {
+                buttonText.text = button.name;
                 button.interactable = true;
             }
         }

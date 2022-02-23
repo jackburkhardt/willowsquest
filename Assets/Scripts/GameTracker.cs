@@ -46,8 +46,8 @@ public class GameTracker : MonoBehaviour
         foreach (var enemyObject in enemiesKilledSinceLastCheckpoint)
         {
             Instantiate(enemyObject);
-            Enemy enemy = enemyObject.GetComponent<Enemy>();
-            enemy.Attributes.HP = 100;
+            Battle battle = enemyObject.GetComponent<Battle>();
+            battle.EnemyAttributes.HP = 100;
         }
 
         Inventory inventory = FindObjectOfType<Inventory>();

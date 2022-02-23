@@ -19,7 +19,7 @@ public class NPCInteractor : MonoBehaviour
     [SerializeField] private List<string> _dialogue;
 
     // (Optional) enemy information if this is an enemy
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Battle _battle;
     
     // (Optional) item information if this NPC needs to hold/recieve an item
     [SerializeField] private Item _item;
@@ -36,6 +36,7 @@ public class NPCInteractor : MonoBehaviour
     void Start()
     {
         _playerInteractor = FindObjectOfType<Interactor>();
+        _battle = GetComponent<Battle>();
 
         _iconRenderer = ((GameObject)Instantiate(Resources.Load("Icons/IconPrefab"), new Vector3(transform.position.x, transform.position.y + _iconOffset), Quaternion.identity, transform)).GetComponent<SpriteRenderer>();
         if (_iconSprite != null) _iconRenderer.sprite = _iconSprite;
@@ -48,11 +49,11 @@ public class NPCInteractor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy, _item);
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _battle, _item);
             }
             else if (_interactionType is InteractionType.Battle) 
             {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _enemy, _item);
+                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _battle, _item);
                 _inRange = false;
             }
         } 

@@ -34,7 +34,7 @@ public class Interactor : MonoBehaviour
         _playerControls = FindObjectOfType<PlayerControls>();
     }
 
-    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Enemy enemy = null, Item item = null)
+    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
     {
         if (_isInteracting) return;
         _isInteracting = true;
@@ -47,7 +47,7 @@ public class Interactor : MonoBehaviour
             case InteractionType.Rest:
                 // do resting func (go.startrest(), etc)
             case InteractionType.Battle:
-                StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(enemy)));
+                StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(battle)));
                 break;
             case InteractionType.PickUp:
                 StartCoroutine(DisplayDialogue(new List<string>
@@ -106,10 +106,10 @@ public class Interactor : MonoBehaviour
         EndInteraction();
     }
 
-    public void StartBattle(Enemy enemy) 
+    public void StartBattle(Battle battle) 
     {
         UIManager ui = FindObjectOfType<UIManager>();
-        ui.StartBattle(enemy, EndInteraction);
+        ui.StartBattle(battle, EndInteraction);
     }
 
     public void EndInteraction()
