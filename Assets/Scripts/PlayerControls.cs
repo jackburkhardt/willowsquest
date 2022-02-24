@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     public float Speed = 1f;
-    public bool  Disabled = false;
+    public bool Disabled = false;
 
     private Rigidbody2D _rb;
 
@@ -15,22 +15,21 @@ public class PlayerControls : MonoBehaviour
     private bool _attributesOpen = false;
     private bool _inventoryOpen = false;
 
-    private Animator anim;
+    private Animator _anim;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _ui = FindObjectOfType<UIManager>();
+        _anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        anim = GetComponent<Animator>();
-
-        if (Disabled) 
+        if (Disabled)
         {
             _rb.velocity = Vector2.zero;
-            anim.StopPlayback();
+            _anim.Play("willowstill");
             return;
         }
 
@@ -38,36 +37,36 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             dir.x = -1;
-            anim.Play("willowleft");
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             dir.x = 1;
-            anim.Play("willowright");
         }
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             dir.y = 1;
-            anim.Play("willowbackwards");
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             dir.y = -1;
-            anim.Play("willowforward");
         }
+
+        PlayAnimation(dir);
 
         dir.Normalize();
         _rb.velocity = Speed * dir;
-   }
+    }
 
-   void Update()
-   {
+    void Update()
+    {
+        /* if (Disabled) return; */
+
         CheckMenu(KeyCode.I, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
         CheckMenu(KeyCode.Q, ref _attributesOpen, _ui.OpenAttributes, _ui.CloseAttributes);
-   }
+    }
 
-    private void CheckMenu(KeyCode key, ref bool open, Action openAction, Action closeAction)
+    void CheckMenu(KeyCode key, ref bool open, Action openAction, Action closeAction)
     {
         if (Input.GetKeyDown(key))
         {
@@ -81,6 +80,33 @@ public class PlayerControls : MonoBehaviour
                 openAction.Invoke();
                 open = true;
             }
+        }
+    }
+
+    void PlayAnimation(Vector2 dir)
+    {
+        switch (dir.y)
+        {
+            case -1:
+                _anim.Play("willowforward");
+                break;
+            case 1:
+                _anim.Play("willowbackwards");
+                break;
+            default:
+                switch (dir.x)
+                {
+                    case -1:
+                        _anim.Play("willowleft");
+                        break;
+                    case 1:
+                        _anim.Play("willowright");
+                        break;
+                    default:
+                        _anim.Play("willowstill");
+                        break;
+                }
+                break;
         }
     }
 }

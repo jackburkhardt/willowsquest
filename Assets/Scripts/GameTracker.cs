@@ -47,7 +47,7 @@ public class GameTracker : MonoBehaviour
         {
             Instantiate(enemyObject);
             Battle battle = enemyObject.GetComponent<Battle>();
-            battle.EnemyAttributes.HP = 100;
+            battle.InitializeEnemy();
         }
 
         Inventory inventory = FindObjectOfType<Inventory>();
