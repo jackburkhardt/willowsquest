@@ -8,9 +8,11 @@ public class Item : MonoBehaviour
     public string Name;
     public string Description;
     public Sprite Icon;
+    public bool Consumable;
 
     public virtual void Use()
     {
+        if (!Consumable) return;
         Inventory i = FindObjectOfType<Player>().Inventory;
         GameTracker.itemsUsedSinceLastCheckpoint.Add(this);
         i.Remove(this);

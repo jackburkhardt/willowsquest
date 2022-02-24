@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     public Canvas StartCanvas;
 
     public Canvas UICanvas;
-    public Dictionary<GameState, string> objectiveDescriptions;
 
     public Canvas InventoryCanvas;
     public GameObject InventorySlots;
@@ -21,33 +20,14 @@ public class UIManager : MonoBehaviour
 
     public  Canvas BattleCanvas;
     public  Image  BattleSprite;
-    private Enemy  _battleEnemy;
+    private Battle _battleInstance;
     private Action _postBattleAction;
 
     public Canvas GameOverCanvas;
 
     public PlayerControls PlayerControls;
 
-
-    private void Awake()
-    {
-        objectiveDescriptions = new Dictionary<GameState, string>()
-        {
-            {GameState.Start, "Talk to the people around here to figure out where you are."},
-            {GameState.FightSquirrels, "Fight off the squirrels. One of them probably has the key."},
-            {GameState.Stump, "Grab the key from the stump and open the gate."},
-            {GameState.MeetCobra, "Talk to the Cobra King."},
-            {GameState.FightSkunks, "Go \"talk\" to the skunks."},
-            {GameState.GiveCrown, "Return the crown to the Cobra King."},
-            {GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
-            {GameState.MeetFrog, "Talk to the esteemed frog blocking the path."},
-            {GameState.FindWorms, "Find the worms. They should be in a small pot somewhere."},
-            {GameState.GiveWorms, "Give the (very slimy) worms to Dr. Frog"},
-            {GameState.FightBear, "OH NO! A BEAR!"},
-            {GameState.Finish, "Reunite with your gelatin friend!"}
-        };
-    }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -69,11 +49,14 @@ public class UIManager : MonoBehaviour
         SetCanvas(GameOverCanvas);
     }
 
-    public void StartBattle(Enemy enemy, Action postBattleAction)
+    public void StartBattle(Battle battle, Action postBattleAction)
     {
-        BattleSprite.sprite = enemy.Sprite;
-        _battleEnemy = enemy;
+        BattleSprite.sprite = battle.EnemySprite;
+        _battleInstance = battle;
         _postBattleAction = postBattleAction;
+
+        battle.OnBattleStart();
+        EnableBattleButtons();
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
@@ -81,14 +64,14 @@ public class UIManager : MonoBehaviour
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
-            OnBattleTurn("nop");
+            battle.OnBattleTurn("nop");
         }
     }
 
     public void OnBattleTurn(string turn) 
     {
         DisableBattleButtons();
-        StartCoroutine(_battleEnemy.OnBattleTurn(turn, EnableBattleButtons));
+        StartCoroutine(_battleInstance.OnBattleTurn(turn, EnableBattleButtons));
     }
 
     void DisableBattleButtons()
@@ -100,17 +83,38 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void EnableBattleButtons(List<string> cooldowns)
+    void EnableBattleButtons(Dictionary<string, int> cooldowns = null)
     {
         Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
-        foreach (var button in buttons)
+        Text buttonText;
+        if (cooldowns == null)
         {
-            if (!cooldowns.Contains(button.name.ToLower())) 
+            foreach (var button in buttons)
             {
+                buttonText = button.GetComponentInChildren<Text>();
+                buttonText.text = button.name;
                 button.interactable = true;
             }
         }
+        else
+        {
+            int cooldown = 0;
+            foreach (var button in buttons)
+            {
+                buttonText = button.GetComponentInChildren<Text>();
+                if (cooldowns.TryGetValue(button.name.ToLower(), out cooldown))
+                {
+                    buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
+                }
+                else
+                {
+                    buttonText.text = button.name;
+                    button.interactable = true;
+                }
+            }
+        }
     }
+
 
     public void QuitBattle()
     {
@@ -161,8 +165,8 @@ public class UIManager : MonoBehaviour
 
     public void RenderAttributes(Attributes a, Text t)
     {
-        t.text = String.Format("HP\t\t{0:N0}\nATK\t\t{1:N0}\nDEF\t\t{2:N0}\nSPD\t\t{3:N0}\nMD\t\t{4}\nEXP\t\t{5:N0}",
-            a.HP, a.ATK, a.DEF, a.SPD, a.MD.ToString(), a.EXP);
+        t.text = String.Format("ATK\t\t{0:N0}\nDEF\t\t{1:N0}\nSPD\t\t{2:N0}\nMD\t\t{3}\nEXP\t\t{4:N0}",
+            a.ATK, a.DEF, a.SPD, a.MD.ToString(), a.EXP);
         
         if (a.PlayerAttributes)
         {

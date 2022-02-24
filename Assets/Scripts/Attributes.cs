@@ -11,21 +11,32 @@ public class Attributes : MonoBehaviour
     public float SPD = 1f;
     public Mood  MD  = Mood.Happy;
 
+    // To display attributes
+    public Image HealthBar;
+    [SerializeField] private float _lerpSpeed = 0.1f;
+    public Text RenderText;
+
     // Player-only fields and logic
     public float EXP = 0f;
 
+    // What type/are we rendering our health
     public bool PlayerAttributes = false;
-    public Text RenderText;
+    public bool ActiveEnemy = false;
 
     void Start()
     {
-        UpdateUI();
+        UpdateText();
+        UpdateHealthBar();
+    }
+
+    void Update()
+    {
+        UpdateHealthBar();
     }
 
     public void UpdateHealth(float value)
     {
         HP = Mathf.Clamp(HP+value, 0, 100f);
-        UpdateUI();
     }
 
     public void AddAttribute(string attribute)
@@ -49,15 +60,26 @@ public class Attributes : MonoBehaviour
         }
 
         EXP -= 1f;
-        UpdateUI();
+        UpdateText();
     }
 
-    void UpdateUI()
+    public void UpdateText()
     {
         if (RenderText)
         {
             UIManager ui = FindObjectOfType<UIManager>();
             ui.RenderAttributes(this, RenderText);
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        if (HealthBar && (PlayerAttributes || (!PlayerAttributes && ActiveEnemy)))
+        {
+            HealthBar.fillAmount = Mathf.Lerp(
+                HealthBar.fillAmount,
+                Mathf.Clamp(HP/100f, 0, 1f),
+                _lerpSpeed);
         }
     }
 }

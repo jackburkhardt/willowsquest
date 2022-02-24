@@ -3,5 +3,7 @@
     Speak,
     Battle,
     Give,
+    PickUp,
+    Shop,
     Rest
 }

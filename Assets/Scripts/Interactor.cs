@@ -25,13 +25,16 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Image _dialogueBackgroundImage;
     private PlayerControls _playerControls;
 
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private GameTracker _tracker;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerControls = FindObjectOfType<PlayerControls>();
     }
 
-    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Enemy enemy = null)
+    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
     {
         if (_isInteracting) return;
         _isInteracting = true;
@@ -44,10 +47,21 @@ public class Interactor : MonoBehaviour
             case InteractionType.Rest:
                 // do resting func (go.startrest(), etc)
             case InteractionType.Battle:
-                StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(enemy)));
+                StartCoroutine(DisplayDialogue(dialogue, () => StartBattle(battle)));
+                break;
+            case InteractionType.PickUp:
+                StartCoroutine(DisplayDialogue(new List<string>
+                {
+                    "You picked up a " + item.Name + "!",
+                    "The description reads: \"" + item.Description + "\"",
+                    "You put the " + item.Name + " in your inventory [I]."
+                }, () => PickUp(item)));
                 break;
             case InteractionType.Give:
-                // open shop
+                StartCoroutine(DisplayDialogue(new List<string>
+                {
+                    "The " + item.Name + " was removed from your inventory."
+                }, () => GiveItem(item)));
                 break;
         }
     }
@@ -80,10 +94,22 @@ public class Interactor : MonoBehaviour
         postDialogueAction?.Invoke();
     }
 
-    public void StartBattle(Enemy enemy) 
+    public void PickUp(Item item)
+    {
+        _inventory.Store(item);
+        EndInteraction();
+    }
+
+    public void GiveItem(Item item)
+    {
+        _inventory.Remove(item);
+        EndInteraction();
+    }
+
+    public void StartBattle(Battle battle) 
     {
         UIManager ui = FindObjectOfType<UIManager>();
-        ui.StartBattle(enemy, EndInteraction);
+        ui.StartBattle(battle, EndInteraction);
     }
 
     public void EndInteraction()
