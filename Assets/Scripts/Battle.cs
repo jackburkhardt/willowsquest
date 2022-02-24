@@ -97,7 +97,8 @@ public class Battle : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        postTurnAction?.Invoke(_playerCooldowns);
+        if (_playerAttributes.HP < 1) _endBattle();
+        else postTurnAction?.Invoke(_playerCooldowns);
     }
 
 
@@ -111,68 +112,60 @@ public class Battle : MonoBehaviour
         switch (type)
         {
             case "scratch":
-                float damage = 10 + _calculateBonus(true);
+                if (_enemyBlock)
+                {
+                    _enemyBlock = false;
+                    StartCoroutine(_displayDialogue("The enemy blocked your attack!"));
+                    break;
+                }
 
+                float damage = 15 + _calculateBonus(true);
                 if (_playerAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
                 else if (_playerAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
                 if (_enemyAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
                 else if (_enemyAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
+                _enemyAttributes.UpdateHealth(-damage);
 
-                if (!_enemyBlock)
-                {
-                    StartCoroutine(_displayDialogue(String.Format(_playerMoveDialogues[type], damage)));
-                    _enemyAttributes.UpdateHealth(-damage);
-                }
-                else
-                {
-                    StartCoroutine(_displayDialogue("The enemy blocked your attack!"));
-                    _enemyBlock = false;
-                }
+                StartCoroutine(_displayDialogue(String.Format(_playerMoveDialogues[type], damage)));
                 break;
             case "tease":
-                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 _enemyAttributes.MD = Mood.Sad;
                 _enemyBlock = false;
 
-                _playerCooldowns.TryGetValue(type, out cooldown);
-                _playerCooldowns[type] = cooldown + 1;
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             case "taunt":
-                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 _enemyAttributes.MD = Mood.Angry;
                 _enemyBlock = false;
 
-                _playerCooldowns.TryGetValue(type, out cooldown);
-                _playerCooldowns[type] = cooldown + 1;
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             case "sing":
-                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 _playerAttributes.MD = Mood.Happy;
 
-                _playerCooldowns.TryGetValue(type, out cooldown);
-                _playerCooldowns[type] = cooldown + 1;
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             case "rest":
-                float heal = Random.Range(5f, 25f);
+                float heal = Random.Range(10f, 33f);
+                _playerAttributes.UpdateHealth(heal);
 
                 StartCoroutine(_displayDialogue(String.Format(_playerMoveDialogues[type], heal)));
-                _playerAttributes.UpdateHealth(heal);
                 break;
             case "flee":
-                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
-
-                _playerCooldowns.TryGetValue(type, out cooldown);
-                _playerCooldowns[type] = cooldown + 1;
-
                 flee = true;
+
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             default:
                 StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
                 break;
         }
 
-        _playerCooldowns.TryGetValue(type, out cooldown);
-        _playerCooldowns[type] = cooldown + 1;
+        if (!type.Equals("scratch"))
+        {
+            _playerCooldowns.TryGetValue(type, out cooldown);
+            _playerCooldowns[type] = cooldown + 1;
+        }
 
         return flee;
     }
@@ -203,7 +196,7 @@ public class Battle : MonoBehaviour
             case "hit":
                 float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
                                   (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
-                float damage = Random.Range(5f, maxDamage) + _calculateBonus(false);
+                float damage = Random.Range(10f, maxDamage) + _calculateBonus(false);
 
                 if (_enemyAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
                 else if (_enemyAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
