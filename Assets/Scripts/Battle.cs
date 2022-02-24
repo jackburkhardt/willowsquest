@@ -85,6 +85,8 @@ public class Battle : MonoBehaviour
         if (_enemyAttributes.HP < 1)
         {
             _playerAttributes.EXP += _enemyAttributes.EXP;
+            _playerAttributes.UpdateText();
+
             _endBattle();
 
             GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
@@ -263,7 +265,7 @@ public class Battle : MonoBehaviour
         // Inverse difficulty multiplier
         // For easy enemies, we want high advantage and low miss rate
         // For hard enemies, we want low advantage and high miss rate
-        float multiplier = 0.3f * _difficultyMultiplier;
+        float multiplier = 0.2f * _difficultyMultiplier;
         float chance = Mathf.Clamp(multiplier * (defend.SPD / (attack.SPD + defend.SPD)) * ((attack.MD is Mood.Happy) ? 1.1f : 1f), 0, 1f);
 
         return Random.Range(0f, 1f) < chance;
