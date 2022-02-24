@@ -17,11 +17,14 @@ public class PlayerControls : MonoBehaviour
 
     private Animator _anim;
 
+    private Attributes _attr;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _ui = FindObjectOfType<UIManager>();
         _anim = GetComponent<Animator>();
+        _attr = FindObjectOfType<Player>().Attributes;
     }
 
     void FixedUpdate()
@@ -60,7 +63,12 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        /* if (Disabled) return; */
+        if (Disabled) return;
+
+        if (_attr.HP < 1)
+        {
+            _ui.GameOver();
+        }
 
         CheckMenu(KeyCode.I, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
         CheckMenu(KeyCode.Q, ref _attributesOpen, _ui.OpenAttributes, _ui.CloseAttributes);
