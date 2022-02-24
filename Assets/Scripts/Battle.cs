@@ -8,29 +8,67 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Attributes))]
 public class Battle : MonoBehaviour
 {
+    public string EnemyName;
     public Sprite EnemySprite;
-    public Attributes EnemyAttributes;
-    [SerializeField] private DifficultyLevel EnemyDifficulty;
-    private bool _weakened = false;
+
+    [SerializeField] private Attributes _enemyAttributes;
+    [SerializeField] private DifficultyLevel _enemyDifficulty;
+    private bool _enemyBlock;
+
+    private float _difficultyMultiplier;
+    private static float _moodMultiplier = 2f;
 
     private Attributes _playerAttributes;
     private Dictionary<string, int> _playerCooldowns;
 
     [SerializeField] private float _textScrollDelay;
-    [SerializeField] private Text  _displayText;
+    [SerializeField] private Text _displayText;
     [SerializeField] private Image _dialogueBackgroundImage;
+
+    private static Dictionary<string, string> _missDialogues = new Dictionary<string, string>()
+    {
+        {"scratch", "You missed! Your claws weren't quick enough that time..."},
+        {"tease",   "Sticks and stones may break their bones but words will never hurt the them! Your teasing had no effect..."},
+        {"taunt",   "They scoff at your trash-talk. Your taunt had no effect..."},
+        {"sing",    "They interrupt your melody. You failed to make yourself happy..."},
+        {"rest",    "You're too shaken up to rest right now..."},
+        {"flee",    "They won't let you flee!"},
+    };
+    private static Dictionary<string, string> _playerMoveDialogues = new Dictionary<string, string>()
+    {
+        {"scratch", "You scratched the enemy for {0:N0} HP!"},
+        {"tease",   "Your teasing made them sad!"},
+        {"taunt",   "Your taunt made them angry!"},
+        {"sing",    "You made yourself happy with your favorite song!"},
+        {"rest",    "You rested for {0:N0} HP!"},
+        {"flee",    "You fleed successfully!"},
+    };
+    private static Dictionary<string, string> _enemyMoveDialogues = new Dictionary<string, string>()
+    {
+        {"hit",   "The enemy hit you for {0:N0} HP!"},
+        {"block", "The enemy prepares for your next hit!"},
+        {"tease", "The enemy's teasing makes you sad!"},
+        {"taunt", "The enemy's taunt makes you angry!"},
+    };
 
     // Start is called before the first frame update
     void Start()
     {
         EnemySprite = GetComponent<SpriteRenderer>().sprite;
-        EnemyAttributes = GetComponent<Attributes>();
+        _enemyAttributes = GetComponent<Attributes>();
         _playerAttributes = FindObjectOfType<Player>().Attributes;
+        _difficultyMultiplier = _calculateDifficulty();
+    }
+
+    public void InitializeEnemy()
+    {
+        _enemyAttributes.HP = 100f;
+        _enemyAttributes.MD = Mood.Angry;
     }
 
     public void OnBattleStart()
     {
-        EnemyAttributes.ActiveEnemy = true;
+        _enemyAttributes.ActiveEnemy = true;
         _playerCooldowns = new Dictionary<string, int>();
     }
 
@@ -40,98 +78,165 @@ public class Battle : MonoBehaviour
 
         _updateCooldowns();
 
-        // First the player does some action 
-        bool flee = false;
-        switch (message)
-        {
-            case "scratch":
-                _doPlayerAttack("scratch");
-                _playerCooldowns["scratch"] = 1;
-                break;
-            case "bite":
-                _doPlayerAttack("bite");
-                _playerCooldowns["bite"] = 3;
-                break;
-            case "kick":
-                _doPlayerAttack("kick");
-                _playerCooldowns["kick"] = 2;
-                break;
-            case "rest":
-                float heal = Random.Range(5f, 25f);
-                _playerAttributes.UpdateHealth(heal);
-                _playerCooldowns["rest"] = 1;
-                StartCoroutine(_displayDialogue(String.Format("You rested for {0:N0} HP!", heal)));
-                break;
-            case "flee":
-                if (!_calculateMiss(_playerAttributes.SPD, EnemyAttributes.SPD, true))
-                {
-                    _endBattle();
-                    flee = true;
-                }
-                else StartCoroutine(_displayDialogue("You failed to flee!"));
-                _playerCooldowns["flee"] = 1;
-                break;
-            default:
-                StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
-                break;
-        }
+        bool flee = _doPlayerMove(message.ToLower());
 
         yield return new WaitForSeconds(2f);
 
-        // If the enemy runs out of health, trigger destory and call back to UIManager to quit the battle
-        if (EnemyAttributes.HP < 1)
+        if (_enemyAttributes.HP < 1)
         {
-            _playerAttributes.EXP += EnemyAttributes.EXP;
+            _playerAttributes.EXP += _enemyAttributes.EXP;
+            _playerAttributes.UpdateText();
+
             _endBattle();
+
             GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
-            
+
             Destroy(gameObject);
         }
-        else if (!flee) _doEnemyAttack();
+        else if (!flee) _doEnemyMove();
 
         yield return new WaitForSeconds(2f);
 
         postTurnAction?.Invoke(_playerCooldowns);
     }
 
-    private void _doPlayerAttack(string type)
+
+    bool _doPlayerMove(string type)
     {
-        if (type.Equals("kick") && _calculateMiss(_playerAttributes.SPD, EnemyAttributes.SPD, true))
+        if (_handleMiss(type)) return false;
+
+        int cooldown;
+        bool flee = false;
+
+        switch (type)
         {
-            StartCoroutine(_displayDialogue("You missed!"));
-            return;
+            case "scratch":
+                float damage = 10 + _calculateBonus(true);
+
+                if (_playerAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
+                else if (_playerAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
+                if (_enemyAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
+                else if (_enemyAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
+
+                if (!_enemyBlock)
+                {
+                    StartCoroutine(_displayDialogue(String.Format(_playerMoveDialogues[type], damage)));
+                    _enemyAttributes.UpdateHealth(-damage);
+                }
+                else
+                {
+                    StartCoroutine(_displayDialogue("The enemy blocked your attack!"));
+                    _enemyBlock = false;
+                }
+                break;
+            case "tease":
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
+                _enemyAttributes.MD = Mood.Sad;
+                _enemyBlock = false;
+
+                _playerCooldowns.TryGetValue(type, out cooldown);
+                _playerCooldowns[type] = cooldown + 1;
+                break;
+            case "taunt":
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
+                _enemyAttributes.MD = Mood.Angry;
+                _enemyBlock = false;
+
+                _playerCooldowns.TryGetValue(type, out cooldown);
+                _playerCooldowns[type] = cooldown + 1;
+                break;
+            case "sing":
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
+                _playerAttributes.MD = Mood.Happy;
+
+                _playerCooldowns.TryGetValue(type, out cooldown);
+                _playerCooldowns[type] = cooldown + 1;
+                break;
+            case "rest":
+                float heal = Random.Range(5f, 25f);
+
+                StartCoroutine(_displayDialogue(String.Format(_playerMoveDialogues[type], heal)));
+                _playerAttributes.UpdateHealth(heal);
+                break;
+            case "flee":
+                StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
+
+                _playerCooldowns.TryGetValue(type, out cooldown);
+                _playerCooldowns[type] = cooldown + 1;
+
+                flee = true;
+                break;
+            default:
+                StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
+                break;
         }
 
-        float damage = (type.Equals("scratch")) ? 10 :
-                       (type.Equals("kick"))    ? 20 :
-                       (type.Equals("bite"))    ? 30 : 0;
-        if (Mathf.Abs(damage) < 0.00001) 
+        _playerCooldowns.TryGetValue(type, out cooldown);
+        _playerCooldowns[type] = cooldown + 1;
+
+        return flee;
+    }
+
+    bool _handleMiss(string type)
+    {
+        if (_calculateMiss())
         {
-            Debug.Log("Invalid attack.");
-            return;
+            StartCoroutine(_displayDialogue(_missDialogues[type]));
+            return true;
+        }
+        return false;
+    }
+
+    void _doEnemyMove()
+    {
+        float selection = Random.Range(0f, 1f);
+
+        // 60% attacking, 20% blocking, 10% teasing and taunting each
+        string move =
+            (selection < 0.6f) ? "hit" :
+            (selection < 0.8f) ? "block" :
+            (selection < 0.9f) ? "tease" :
+         /* (selection <= 1f) */ "taunt";
+
+        switch (move)
+        {
+            case "hit":
+                float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
+                                  (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
+                float damage = Random.Range(5f, maxDamage) + _calculateBonus(false);
+
+                if (_enemyAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
+                else if (_enemyAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
+                if (_playerAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
+                else if (_playerAttributes.MD is Mood.Sad) damage /= _moodMultiplier;
+
+                StartCoroutine(_displayDialogue(String.Format(_enemyMoveDialogues["hit"], damage)));
+                _playerAttributes.UpdateHealth(-damage);
+                break;
+            case "block":
+                if (_enemyBlock) goto case "hit";
+
+                StartCoroutine(_displayDialogue(String.Format(_enemyMoveDialogues["block"])));
+                _enemyBlock = true;
+                break;
+            case "tease":
+                if (_playerAttributes.MD is Mood.Sad) goto case "taunt";
+
+                StartCoroutine(_displayDialogue(_enemyMoveDialogues["tease"]));
+                _playerAttributes.MD = Mood.Sad;
+                break;
+            case "taunt":
+                if (_playerAttributes.MD is Mood.Angry) goto case "tease";
+
+                StartCoroutine(_displayDialogue(_enemyMoveDialogues["taunt"]));
+                _playerAttributes.MD = Mood.Angry;
+                break;
         }
 
-        float advantage = _calculateAdvantage(_playerAttributes, EnemyAttributes, true);
-        if (_weakened) advantage += advantage;
-        
-        if (type.Equals("bite")) _weakened = true;
-
-        StartCoroutine(_displayDialogue(String.Format("You attacked the enemy for {0:N0} HP!", damage + advantage)));
-        EnemyAttributes.UpdateHealth(-(damage + advantage));
+        _playerAttributes.UpdateText();
     }
 
-    private void _doEnemyAttack()
-    {
-        float advantage = _calculateAdvantage(EnemyAttributes, _playerAttributes, false);
-        float maxDamage = (EnemyDifficulty is DifficultyLevel.Easy)   ? 15 :
-                          (EnemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
-        float damage = Random.Range(5f, maxDamage);
-
-        StartCoroutine(_displayDialogue(String.Format("The enemy attacked you for {0:N0} HP!", damage + advantage)));
-        _playerAttributes.UpdateHealth(-(damage + advantage));
-    }
-
-    private IEnumerator _displayDialogue(string dialogue)
+    IEnumerator _displayDialogue(string dialogue)
     {
         _displayText.text = "";
         foreach (var ch in dialogue)
@@ -141,37 +246,40 @@ public class Battle : MonoBehaviour
         }
     }
 
-    private float _calculateAdvantage(Attributes attack, Attributes defend, bool player)
+    float _calculateBonus(bool player)
     {
-        float multiplier = _difficultyMultiplier(player);
+        Attributes attack = player ? _playerAttributes : _enemyAttributes;
+        Attributes defend = player ? _enemyAttributes : _playerAttributes;
 
-        return multiplier * Mathf.Max(attack.ATK - defend.DEF, 0);
+        float chance = (attack.MD is Mood.Happy) ? 0.25f : 0.125f;
+        bool result = Random.Range(0f, 1f) < chance;
+
+        return _difficultyMultiplier * Mathf.Max(attack.ATK - defend.DEF, 0) * ((result) ? 1.3f : 1f);
     }
 
-    private bool _calculateMiss(float attackSPD, float defendSPD, bool player)
+    bool _calculateMiss()
     {
+        Attributes attack = _playerAttributes;
+        Attributes defend = _enemyAttributes;
+
         // Inverse difficulty multiplier
         // For easy enemies, we want high advantage and low miss rate
         // For hard enemies, we want low advantage and high miss rate
-        float multiplier = _difficultyMultiplier(!player);
-        float chance = Mathf.Clamp(multiplier * (defendSPD / (attackSPD + defendSPD)), 0, 1f);
+        float multiplier = 0.2f * _difficultyMultiplier;
+        float chance = Mathf.Clamp(multiplier * (defend.SPD / (attack.SPD + defend.SPD)) * ((attack.MD is Mood.Happy) ? 1.1f : 1f), 0, 1f);
 
         return Random.Range(0f, 1f) < chance;
     }
 
-    private float _difficultyMultiplier(bool player)
+    float _calculateDifficulty()
     {
-        return 
-            // If this ia a player's attack on the enemy
-            (player) ? 
-            (EnemyDifficulty is DifficultyLevel.Easy)   ? 1.5f :
-            (EnemyDifficulty is DifficultyLevel.Medium) ? 1f   : 0.5f :
-            // If this is a an enemy's attack on the player
-            (EnemyDifficulty is DifficultyLevel.Easy)   ? 0.5f :
-            (EnemyDifficulty is DifficultyLevel.Medium) ? 1f   : 1.5f;
+        return
+            (_enemyDifficulty is DifficultyLevel.Easy) ? 0.80f :
+            (_enemyDifficulty is DifficultyLevel.Medium) ? 1.00f :
+         /* (EnemyDifficulty is DifficultyLevel.Hard) */  1.25f;
     }
 
-    private void _updateCooldowns()
+    void _updateCooldowns()
     {
         Dictionary<string, int> cooldowns = new Dictionary<string, int>();
         foreach (var item in _playerCooldowns)
@@ -182,15 +290,18 @@ public class Battle : MonoBehaviour
         _playerCooldowns = cooldowns;
     }
 
-    private void _endBattle()
+    void _endBattle()
     {
-        EnemyAttributes.ActiveEnemy = false;
+        _enemyAttributes.ActiveEnemy = false;
+        _playerAttributes.MD = Mood.Happy;
         _displayText.text = "";
+
         UIManager ui = FindObjectOfType<UIManager>();
         ui.QuitBattle();
     }
 
-    public enum DifficultyLevel {
+    public enum DifficultyLevel
+    {
         Easy,
         Medium,
         Hard
