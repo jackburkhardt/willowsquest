@@ -21,6 +21,8 @@ public class Battle : MonoBehaviour
     private Attributes _playerAttributes;
     private Dictionary<string, int> _playerCooldowns;
 
+    private AudioManager _audioManager;
+
     [SerializeField] private float _textScrollDelay;
     [SerializeField] private Text _displayText;
     [SerializeField] private Image _dialogueBackgroundImage;
@@ -58,6 +60,7 @@ public class Battle : MonoBehaviour
         _enemyAttributes = GetComponent<Attributes>();
         _playerAttributes = FindObjectOfType<Player>().Attributes;
         _difficultyMultiplier = _calculateDifficulty();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void InitializeEnemy()
@@ -288,6 +291,8 @@ public class Battle : MonoBehaviour
         _enemyAttributes.ActiveEnemy = false;
         _playerAttributes.MD = Mood.Happy;
         _displayText.text = "";
+
+        _audioManager.StopBattleMusic();
 
         UIManager ui = FindObjectOfType<UIManager>();
         ui.QuitBattle();
