@@ -16,7 +16,13 @@ public class Interactor : MonoBehaviour
     // the delay between characters in the dialogue text scrolling (smaller = faster)
     // 0.01 fast, 0.05 medium, 0.1 slow
     [SerializeField] private float _textScrollDelay;
-    
+
+    public float TextScrollDelay
+    {
+        get => _textScrollDelay;
+        set => _textScrollDelay = value;
+    }
+
     // Canvas text for dialogue
     [SerializeField] private Text _displayText;
     
@@ -26,6 +32,8 @@ public class Interactor : MonoBehaviour
     private PlayerControls _playerControls;
 
     private AudioManager _audioManager;
+
+    public event InteractionEventDelegate InteractionEvent;
 
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameTracker _tracker;
@@ -37,11 +45,12 @@ public class Interactor : MonoBehaviour
         _audioManager = FindObjectOfType<AudioManager>();
     }
 
-    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
+    public void StartInteraction(NPCInteractor interactor, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
     {
         if (_isInteracting) return;
         _isInteracting = true;
         _playerControls.Disabled = true;
+        InteractionEvent?.Invoke(type, interactor);
         switch (type)
         {
             case InteractionType.Speak:

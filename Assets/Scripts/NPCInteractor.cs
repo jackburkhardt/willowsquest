@@ -23,7 +23,7 @@ public class NPCInteractor : MonoBehaviour
     
     // (Optional) item information if this NPC needs to hold/recieve an item
     [SerializeField] private Item _item;
-    
+
     // Is player in range of this npc?
     private bool _inRange;
     
@@ -31,6 +31,11 @@ public class NPCInteractor : MonoBehaviour
     private SpriteRenderer _iconRenderer;
     [SerializeField] private Sprite _iconSprite;
     [SerializeField] private float  _iconOffset;
+
+    [Header("Tasks (Optional)")] 
+    [SerializeField] private Task task;
+    //[SerializeField] private List<string> _taskIncompleteDialogue;
+    [SerializeField] private List<string> _taskCompleteDialogue;
     
     // Start is called before the first frame update
     void Start()
@@ -45,18 +50,21 @@ public class NPCInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_inRange && !_playerInteractor.IsInteracting)
+        if (!_inRange || _playerInteractor.IsInteracting) return;
+        
+        if (Input.GetKeyDown(KeyCode.E) && task != null && task.completed)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _battle, _item);
-            }
-            else if (_interactionType is InteractionType.Battle) 
-            {
-                _playerInteractor.StartInteraction(gameObject, _interactionType, _dialogue, _battle, _item);
-                _inRange = false;
-            }
-        } 
+            _playerInteractor.StartInteraction(this, _interactionType,
+                _taskCompleteDialogue, _battle, _item);
+        }
+        else if (_interactionType is InteractionType.Battle) 
+        {
+            _playerInteractor.StartInteraction(this, _interactionType, _dialogue, _battle, _item);
+            _inRange = false;
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            _playerInteractor.StartInteraction(this, _interactionType, _dialogue, _battle, _item);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

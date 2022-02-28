@@ -57,7 +57,7 @@ public class GameTracker : MonoBehaviour
         }
     }
 
-    private void AdvanceObjective()
+    public void AdvanceObjective()
     {
         currentGameState++;
         objectiveDescriptions.TryGetValue(currentGameState, out var s);

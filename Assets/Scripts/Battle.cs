@@ -304,4 +304,12 @@ public class Battle : MonoBehaviour
         Medium,
         Hard
     }
+
+    public string EnemyName1 => EnemyName;
+
+    public Sprite EnemySprite1 => EnemySprite;
+
+    public Attributes EnemyAttributes => _enemyAttributes;
+
+    public DifficultyLevel EnemyDifficulty => _enemyDifficulty;
 }
