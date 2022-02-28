@@ -28,6 +28,9 @@ public class Task : MonoBehaviour
 
     [SerializeField] public UnityEvent postTaskAction;
     
+    // gamestate that should be changed to when task completes
+    [SerializeField] private GameState nextState;
+    
     // Enemies that need to be defeated
     [SerializeField] private List<Battle> enemies;
     
@@ -46,32 +49,26 @@ public class Task : MonoBehaviour
 
         _interactor.InteractionEvent += (type, interactor) =>
         {
-            Debug.Log("speak event triggered");
-            if (type == InteractionType.Speak) RegisterSpeakEvent(interactor);
+            //Debug.Log("speak event triggered");
+            if (type == InteractionType.Speak && npcs.Contains(interactor)) npcs.Remove(interactor);
         };
 
+        _interactor.EnemyDeathEvent += (battle) =>
+        {
+            if (enemies.Contains(battle)) enemies.Remove(battle);
+        };
+
+        _inventory.InventoryStoreEvent += (item) =>
+        {
+            if (items.Contains(item)) items.Remove(item);
+        };
     }
-
-
-    private void RegisterSpeakEvent(NPCInteractor callerNPC)
-    {
-        if (npcs.Contains(callerNPC)) npcs.Remove(callerNPC);
-    }
-
+    
 
     private IEnumerator CheckForProgress()
     {
         while (true)
         {
-            foreach (var enemy in enemies.Where(enemy => enemy.EnemyAttributes.HP <= 0))
-            {
-                enemies.Remove(enemy);
-            }
-
-            foreach (var item in items.Where(item => _inventory.Items.Contains(item)))
-            {
-                items.Remove(item);
-            }
 
             if (npcs.Count == 0) allNPCsTalked = true;
             if (items.Count == 0) allItemsCollected = true;
@@ -91,7 +88,7 @@ public class Task : MonoBehaviour
     {
         completed = true;
         postTaskAction.Invoke();
-        _tracker.AdvanceObjective();
+        StartCoroutine(_tracker.AdvanceObjective(nextState));
     }
 }
 
@@ -103,3 +100,5 @@ public enum TaskType
 }
 
 public delegate void InteractionEventDelegate(InteractionType type, NPCInteractor interactor);
+
+public delegate void EnemyDeathDelegate(Battle enemy);

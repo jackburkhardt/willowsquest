@@ -93,7 +93,8 @@ public class Battle : MonoBehaviour
             _endBattle();
 
             GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
-
+            FindObjectOfType<Interactor>().RegisterBattleEnd(this);
+            
             Destroy(gameObject);
         }
         else if (!flee) _doEnemyMove();

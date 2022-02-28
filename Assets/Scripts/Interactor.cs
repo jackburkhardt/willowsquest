@@ -34,6 +34,7 @@ public class Interactor : MonoBehaviour
     private AudioManager _audioManager;
 
     public event InteractionEventDelegate InteractionEvent;
+    public event EnemyDeathDelegate EnemyDeathEvent;
 
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameTracker _tracker;
@@ -125,11 +126,17 @@ public class Interactor : MonoBehaviour
         ui.StartBattle(battle, EndInteraction);
     }
 
+    public void RegisterBattleEnd(Battle battle)
+    {
+        // blah blah blah blah nblah DuosGFrsoufhsdopudqsnpdqs;uhdpq
+        EnemyDeathEvent?.Invoke(battle);
+    }
+
     public void EndInteraction()
     {
         _isInteracting = false;
         _playerControls.Disabled = false;
     }
-    
+
     public bool IsInteracting => _isInteracting;
 }

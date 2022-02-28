@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     public List<Item> Items;
     public bool Full = false;
 
+    public event InventoryDelegate InventoryStoreEvent;
+
     void Start()
     {
         Items = new List<Item>();
@@ -19,6 +21,7 @@ public class Inventory : MonoBehaviour
         if (Full) return false;
 
         Items.Add(item);
+        InventoryStoreEvent?.Invoke(item);
         UpdateUI();
         
         // TODO: see if this causes problems. if so, disable renderers and colliders manually
@@ -29,15 +32,15 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public bool Remove(Item item)
+    public void Remove(Item item)
     {
-        if (Items.Count == 0 || !Items.Contains(item)) return false;
+        if (Items.Count == 0 || !Items.Contains(item)) return;
         if (Full) Full = false;
 
         Items.Remove(item);
         UpdateUI();
 
-        return true;
+       // return true;
     }
 
     void UpdateUI()
@@ -46,3 +49,5 @@ public class Inventory : MonoBehaviour
         ui.RenderInventory(ref Items);
     }
 }
+
+public delegate void InventoryDelegate(Item item);
