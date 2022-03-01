@@ -16,7 +16,13 @@ public class Interactor : MonoBehaviour
     // the delay between characters in the dialogue text scrolling (smaller = faster)
     // 0.01 fast, 0.05 medium, 0.1 slow
     [SerializeField] private float _textScrollDelay;
-    
+
+    public float TextScrollDelay
+    {
+        get => _textScrollDelay;
+        set => _textScrollDelay = value;
+    }
+
     // Canvas text for dialogue
     [SerializeField] private Text _displayText;
     
@@ -25,6 +31,11 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Image _dialogueBackgroundImage;
     private PlayerControls _playerControls;
 
+    private AudioManager _audioManager;
+
+    public event InteractionEventDelegate InteractionEvent;
+    public event EnemyDeathDelegate EnemyDeathEvent;
+
     [SerializeField] private Inventory _inventory;
     [SerializeField] private GameTracker _tracker;
 
@@ -32,13 +43,15 @@ public class Interactor : MonoBehaviour
     void Start()
     {
         _playerControls = FindObjectOfType<PlayerControls>();
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
-    public void StartInteraction(GameObject go, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
+    public void StartInteraction(NPCInteractor interactor, InteractionType type, List<string> dialogue = null, Battle battle = null, Item item = null)
     {
         if (_isInteracting) return;
         _isInteracting = true;
         _playerControls.Disabled = true;
+        InteractionEvent?.Invoke(type, interactor);
         switch (type)
         {
             case InteractionType.Speak:
@@ -108,8 +121,15 @@ public class Interactor : MonoBehaviour
 
     public void StartBattle(Battle battle) 
     {
+        _audioManager.StartBattleMusic();
         UIManager ui = FindObjectOfType<UIManager>();
         ui.StartBattle(battle, EndInteraction);
+    }
+
+    public void RegisterBattleEnd(Battle battle)
+    {
+        // blah blah blah blah nblah DuosGFrsoufhsdopudqsnpdqs;uhdpq
+        EnemyDeathEvent?.Invoke(battle);
     }
 
     public void EndInteraction()
@@ -117,6 +137,6 @@ public class Interactor : MonoBehaviour
         _isInteracting = false;
         _playerControls.Disabled = false;
     }
-    
+
     public bool IsInteracting => _isInteracting;
 }
