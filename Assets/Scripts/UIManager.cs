@@ -86,13 +86,13 @@ public class UIManager : MonoBehaviour
     void EnableBattleButtons(Dictionary<string, int> cooldowns = null)
     {
         Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
-        Text buttonText;
+        //Text buttonText;
         if (cooldowns == null)
         {
             foreach (var button in buttons)
             {
-                buttonText = button.GetComponentInChildren<Text>();
-                buttonText.text = button.name;
+                //buttonText = button.GetComponentInChildren<Text>();
+                //buttonText.text = button.name;
                 button.interactable = true;
             }
         }
@@ -101,14 +101,14 @@ public class UIManager : MonoBehaviour
             int cooldown = 0;
             foreach (var button in buttons)
             {
-                buttonText = button.GetComponentInChildren<Text>();
+                //buttonText = button.GetComponentInChildren<Text>();
                 if (cooldowns.TryGetValue(button.name.ToLower(), out cooldown))
                 {
-                    buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
+                    //buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
                 }
                 else
                 {
-                    buttonText.text = button.name;
+                    //buttonText.text = button.name;
                     button.interactable = true;
                 }
             }
