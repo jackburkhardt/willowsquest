@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        audiosrc = gameObject.GetComponent<AudioSource>();
+        audiosrc = FindObjectOfType<AudioSource>();
         audiosrc.Play();
     }
 

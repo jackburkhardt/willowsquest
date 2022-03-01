@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class GameTracker : MonoBehaviour
 {
     public static GameState currentGameState = 0;
+    [SerializeField] private Tilemap wallMap;
     private Dictionary<GameState, string> objectiveDescriptions; // ⍟
     [SerializeField] private Text objectiveText;
+    [SerializeField] private Text objectiveLabelText;
     public static List<GameObject> enemiesKilledSinceLastCheckpoint = new List<GameObject>();
     public static List<Item> itemsUsedSinceLastCheckpoint = new List<Item>();
 
@@ -19,7 +22,7 @@ public class GameTracker : MonoBehaviour
         {
             {GameState.Start, "Talk to the statues around here to figure out where you are."},
             {GameState.FightSquirrels, "Fight off the squirrels. One of them probably has the key."},
-            {GameState.Stump, "Grab the key from the stump and open the gate."},
+            {GameState.Stump, "Grab the key and bring it to the gate guard."},
             {GameState.MeetCobra, "Talk to the Cobra King."},
             {GameState.FightSkunks, "Go \"talk\" to the skunks."},
             {GameState.GiveCrown, "Return the crown to the Cobra King."},
@@ -57,11 +60,48 @@ public class GameTracker : MonoBehaviour
         }
     }
 
-    private void AdvanceObjective()
+    public IEnumerator AdvanceObjective(GameState state)
     {
-        currentGameState++;
+        // should prevent players from accidentally undoing progress if they
+        // complete tasks in the wrong order
+        if (state <= currentGameState) yield break;
+        
+        currentGameState = state;
+
+        objectiveLabelText.text = "Objective Complete!";
+        objectiveText.color = Color.green;
+        objectiveLabelText.color = Color.green;
+        
+        yield return new WaitForSeconds(5);
+
+        objectiveLabelText.text = "Current Objective:";
         objectiveDescriptions.TryGetValue(currentGameState, out var s);
         objectiveText.text = s;
+        objectiveLabelText.color = Color.white;
+        objectiveText.color = Color.white;
 
     }
+
+    public void UnlockGate(int gate)
+    {
+        switch (gate)
+        {
+            case 1:
+                wallMap.SetTiles(new []
+                {
+                    new Vector3Int(4, -22, 0),
+                    new Vector3Int(4, -23, 0),
+                    new Vector3Int(4, -24, 0)
+                }, new TileBase[] { null, null, null } );
+                Debug.Log("gate 1 unlocked");
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                return;
+        }
+    }
+    
 }

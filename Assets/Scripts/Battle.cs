@@ -93,7 +93,8 @@ public class Battle : MonoBehaviour
             _endBattle();
 
             GameTracker.enemiesKilledSinceLastCheckpoint.Add(this.gameObject);
-
+            FindObjectOfType<Interactor>().RegisterBattleEnd(this);
+            
             Destroy(gameObject);
         }
         else if (!flee) _doEnemyMove();
@@ -304,4 +305,12 @@ public class Battle : MonoBehaviour
         Medium,
         Hard
     }
+
+    public string EnemyName1 => EnemyName;
+
+    public Sprite EnemySprite1 => EnemySprite;
+
+    public Attributes EnemyAttributes => _enemyAttributes;
+
+    public DifficultyLevel EnemyDifficulty => _enemyDifficulty;
 }
