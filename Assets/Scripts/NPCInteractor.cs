@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Make sure collider acts as trigger
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class NPCInteractor : MonoBehaviour
 {
 
