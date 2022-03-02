@@ -67,7 +67,7 @@ public class Interactor : MonoBehaviour
                 {
                     "You picked up a " + item.Name + "!",
                     "The description reads: \"" + item.Description + "\"",
-                    "You put the " + item.Name + " in your inventory [I]."
+                    "You put the " + item.Name + " in your inventory [Tab]."
                 }, () => PickUp(item)));
                 break;
             case InteractionType.Give:

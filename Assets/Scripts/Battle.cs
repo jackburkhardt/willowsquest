@@ -171,12 +171,15 @@ public class Battle : MonoBehaviour
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
+            case "item":
+                StartCoroutine(_displayDialogue("You used an item!"));
+                break;
             default:
                 StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
                 break;
         }
 
-        if (!type.Equals("scratch"))
+        if (!type.Equals("scratch") && !type.Equals("item"))
         {
             _playerCooldowns.TryGetValue(type, out cooldown);
             _playerCooldowns[type] = cooldown + 1;
