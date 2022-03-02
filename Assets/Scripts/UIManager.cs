@@ -27,6 +27,13 @@ public class UIManager : MonoBehaviour
 
     public PlayerControls PlayerControls;
 
+    public Sprite HappyTag;
+    public Sprite AngryTag;
+    public Sprite SadTag;
+
+    public GameObject EnemyMood;
+    public GameObject WillowMood;
+
     
     // Start is called before the first frame update
     void Start()
@@ -60,7 +67,6 @@ public class UIManager : MonoBehaviour
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
-        ToggleCanvas(AttributesCanvas, true);
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
@@ -72,6 +78,7 @@ public class UIManager : MonoBehaviour
     {
         DisableBattleButtons();
         StartCoroutine(_battleInstance.OnBattleTurn(turn, EnableBattleButtons));
+
     }
 
     void DisableBattleButtons()
@@ -196,5 +203,32 @@ public class UIManager : MonoBehaviour
     void ToggleCanvas(Canvas canvas, bool enable)
     {
         canvas.enabled = enable;
+    }
+
+    public void UpdateMoodTag(string newmood, string party)
+    {
+        GameObject currTag = WillowMood;
+        if (party == "enemy")
+        {
+            currTag = EnemyMood;
+        }
+        else
+        {
+            currTag = WillowMood;
+        }
+
+        if (newmood == "happy")
+        {
+            currTag.GetComponent<Image>().sprite = HappyTag;
+        }
+        else if (newmood == "angry")
+        {
+            currTag.GetComponent<Image>().sprite = AngryTag;
+        }
+        else
+        {
+            currTag.GetComponent<Image>().sprite = SadTag;
+        }
+
     }
 }
