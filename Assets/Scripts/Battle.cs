@@ -102,6 +102,7 @@ public class Battle : MonoBehaviour
             Destroy(gameObject);
         }
         else if (!flee) _doEnemyMove();
+        else _endBattle();
 
         yield return new WaitForSeconds(2f);
 
@@ -205,6 +206,8 @@ public class Battle : MonoBehaviour
         switch (move)
         {
             case "hit":
+                if (_enemyBlock) _enemyBlock = false;
+
                 float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
                                   (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
                 float damage = Random.Range(10f, maxDamage) + _calculateBonus(false);
@@ -302,6 +305,7 @@ public class Battle : MonoBehaviour
         _playerAttributes.MD = Mood.Happy;
         _displayText.text = "";
 
+        _playerAttributes.UpdateText();
         _audioManager.StopBattleMusic();
         
         ui.QuitBattle();
