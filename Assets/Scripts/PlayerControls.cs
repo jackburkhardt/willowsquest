@@ -32,7 +32,7 @@ public class PlayerControls : MonoBehaviour
         if (Disabled)
         {
             _rb.velocity = Vector2.zero;
-            _anim.Play("willowstill");
+            _anim.Play("willowstaticf");
             return;
         }
 
@@ -111,7 +111,7 @@ public class PlayerControls : MonoBehaviour
                         _anim.Play("willowright");
                         break;
                     default:
-                        _anim.Play("willowstill");
+                        _anim.Play("willowstaticf");
                         break;
                 }
                 break;
