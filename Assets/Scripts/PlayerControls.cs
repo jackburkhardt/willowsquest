@@ -70,7 +70,7 @@ public class PlayerControls : MonoBehaviour
             _ui.GameOver();
         }
 
-        CheckMenu(KeyCode.Tab, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
+        CheckMenu(KeyCode.I, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
         CheckMenu(KeyCode.Q, ref _attributesOpen, _ui.OpenAttributes, _ui.CloseAttributes);
     }
 
