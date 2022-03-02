@@ -98,6 +98,7 @@ public class Battle : MonoBehaviour
             Destroy(gameObject);
         }
         else if (!flee) _doEnemyMove();
+        else _endBattle();
 
         yield return new WaitForSeconds(2f);
 
@@ -293,6 +294,7 @@ public class Battle : MonoBehaviour
         _playerAttributes.MD = Mood.Happy;
         _displayText.text = "";
 
+        _playerAttributes.UpdateText();
         _audioManager.StopBattleMusic();
 
         UIManager ui = FindObjectOfType<UIManager>();
