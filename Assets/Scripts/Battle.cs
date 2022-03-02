@@ -190,12 +190,11 @@ public class Battle : MonoBehaviour
 
     bool _handleMiss(string type)
     {
-        if (_calculateMiss())
-        {
-            StartCoroutine(_displayDialogue(_missDialogues[type]));
-            return true;
-        }
-        return false;
+        // Never "miss" when using an item, otherwise check
+        if (type.Equals("item") || !_calculateMiss()) return false;
+
+        StartCoroutine(_displayDialogue(_missDialogues[type]));
+        return true;
     }
 
     void _doEnemyMove()
