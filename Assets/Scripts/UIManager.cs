@@ -67,7 +67,6 @@ public class UIManager : MonoBehaviour
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
-        ToggleCanvas(AttributesCanvas, true);
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
