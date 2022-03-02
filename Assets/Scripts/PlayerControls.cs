@@ -32,7 +32,7 @@ public class PlayerControls : MonoBehaviour
         if (Disabled)
         {
             _rb.velocity = Vector2.zero;
-            _anim.Play("willowstill");
+            _anim.Play("willowstaticf");
             return;
         }
 
@@ -70,7 +70,7 @@ public class PlayerControls : MonoBehaviour
             _ui.GameOver();
         }
 
-        CheckMenu(KeyCode.I, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
+        CheckMenu(KeyCode.Tab, ref _inventoryOpen, _ui.OpenInventory, _ui.CloseInventory);
         CheckMenu(KeyCode.Q, ref _attributesOpen, _ui.OpenAttributes, _ui.CloseAttributes);
     }
 
@@ -111,7 +111,7 @@ public class PlayerControls : MonoBehaviour
                         _anim.Play("willowright");
                         break;
                     default:
-                        _anim.Play("willowstill");
+                        _anim.Play("willowstaticf");
                         break;
                 }
                 break;

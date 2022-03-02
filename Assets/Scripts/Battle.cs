@@ -199,6 +199,8 @@ public class Battle : MonoBehaviour
         switch (move)
         {
             case "hit":
+                if (_enemyBlock) _enemyBlock = false;
+
                 float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
                                   (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
                 float damage = Random.Range(10f, maxDamage) + _calculateBonus(false);
