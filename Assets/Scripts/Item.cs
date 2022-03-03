@@ -13,9 +13,13 @@ public class Item : MonoBehaviour
     public virtual void Use()
     {
         if (!Consumable) return;
+
         Inventory i = FindObjectOfType<Player>().Inventory;
         GameTracker.itemsUsedSinceLastCheckpoint.Add(this);
         i.Remove(this);
+
+        UIManager ui = FindObjectOfType<UIManager>();
+        ui.CloseInventory(true);
 
         // Maybe we want to make this not a MonoBehaviour?
         Destroy(gameObject);
