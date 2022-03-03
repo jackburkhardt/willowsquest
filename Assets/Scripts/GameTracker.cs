@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -58,6 +60,17 @@ public class GameTracker : MonoBehaviour
         {
             inventory.Items.Add(item);
         }
+    }
+
+    public void RestartGame()
+    {
+        // TODO: may not be our intended behavior
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public IEnumerator AdvanceObjective(GameState state)
