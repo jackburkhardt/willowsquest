@@ -78,7 +78,6 @@ public class UIManager : MonoBehaviour
     {
         DisableBattleButtons();
         StartCoroutine(_battleInstance.OnBattleTurn(turn, EnableBattleButtons));
-
     }
 
     void DisableBattleButtons()
@@ -160,9 +159,13 @@ public class UIManager : MonoBehaviour
         _inventoryUseActions[slot].Invoke();
     }
 
-    public void CloseInventory()
+    public void CloseInventory(bool itemUsed = false)
     {
         ToggleCanvas(InventoryCanvas, false);
+        if (itemUsed && BattleCanvas.enabled == true)
+        {
+            OnBattleTurn("item");
+        }
     }
 
     public void OpenAttributes()

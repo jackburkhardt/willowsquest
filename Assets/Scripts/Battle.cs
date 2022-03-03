@@ -171,12 +171,15 @@ public class Battle : MonoBehaviour
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
+            case "item":
+                StartCoroutine(_displayDialogue("You used an item!"));
+                break;
             default:
                 StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
                 break;
         }
 
-        if (!type.Equals("scratch"))
+        if (!type.Equals("scratch") && !type.Equals("item"))
         {
             _playerCooldowns.TryGetValue(type, out cooldown);
             _playerCooldowns[type] = cooldown + 1;
@@ -187,12 +190,11 @@ public class Battle : MonoBehaviour
 
     bool _handleMiss(string type)
     {
-        if (_calculateMiss())
-        {
-            StartCoroutine(_displayDialogue(_missDialogues[type]));
-            return true;
-        }
-        return false;
+        // Never "miss" when using an item, otherwise check
+        if (type.Equals("item") || !_calculateMiss()) return false;
+
+        StartCoroutine(_displayDialogue(_missDialogues[type]));
+        return true;
     }
 
     void _doEnemyMove()
