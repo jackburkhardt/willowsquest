@@ -28,7 +28,7 @@ public class GameTracker : MonoBehaviour
             {GameState.MeetCobra, "Talk to the Cobra King."},
             {GameState.FightSkunks, "Go \"talk\" to the skunks."},
             {GameState.GiveCrown, "Return the crown to the Cobra King."},
-            {GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
+            //{GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
             {GameState.MeetFrog, "Talk to the esteemed frog blocking the path."},
             {GameState.FindWorms, "Find the worms. They should be in a small pot somewhere."},
             {GameState.GiveWorms, "Give the (very slimy) worms to Dr. Frog"},

@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     public Canvas UICanvas;
 
+    public Canvas WinCanvas;
+
     public Canvas IntroCanvas;
 
     public Canvas InventoryCanvas;
@@ -55,6 +57,11 @@ public class UIManager : MonoBehaviour
     public void ShowIntro()
     {
         SetCanvas(IntroCanvas);
+    }
+
+    public void ShowWin()
+    {
+        SetCanvas(WinCanvas);
     }
 
     public void GameOver()
@@ -203,7 +210,7 @@ public class UIManager : MonoBehaviour
 
     void SetCanvas(Canvas canvas)
     {
-        foreach (var c in new Canvas[] {StartCanvas, UICanvas, InventoryCanvas, AttributesCanvas, BattleCanvas, GameOverCanvas, IntroCanvas})
+        foreach (var c in new Canvas[] {StartCanvas, UICanvas, InventoryCanvas, AttributesCanvas, BattleCanvas, GameOverCanvas, IntroCanvas, WinCanvas})
         {
             c.enabled = c.name.Equals(canvas.name);
         }
