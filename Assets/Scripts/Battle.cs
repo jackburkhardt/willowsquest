@@ -27,6 +27,8 @@ public class Battle : MonoBehaviour
     [SerializeField] private Text _displayText;
     [SerializeField] private Image _dialogueBackgroundImage;
 
+    private UIManager ui;
+
     private static Dictionary<string, string> _missDialogues = new Dictionary<string, string>()
     {
         {"scratch", "You missed! Your claws weren't quick enough that time..."},
@@ -61,17 +63,22 @@ public class Battle : MonoBehaviour
         _playerAttributes = FindObjectOfType<Player>().Attributes;
         _difficultyMultiplier = _calculateDifficulty();
         _audioManager = FindObjectOfType<AudioManager>();
+        ui = FindObjectOfType<UIManager>();
     }
 
     public void InitializeEnemy()
     {
         _enemyAttributes.HP = 100f;
         _enemyAttributes.MD = Mood.Angry;
+        ui.UpdateMoodTag("angry", "enemy");
     }
 
     public void OnBattleStart()
     {
         _enemyAttributes.ActiveEnemy = true;
+
+        _playerAttributes.MD = Mood.Happy;
+        ui.UpdateMoodTag("happy", "player");
         _playerCooldowns = new Dictionary<string, int>();
     }
 
@@ -98,6 +105,7 @@ public class Battle : MonoBehaviour
             Destroy(gameObject);
         }
         else if (!flee) _doEnemyMove();
+        else _endBattle();
 
         yield return new WaitForSeconds(2f);
 
@@ -134,18 +142,21 @@ public class Battle : MonoBehaviour
                 break;
             case "tease":
                 _enemyAttributes.MD = Mood.Sad;
+                ui.UpdateMoodTag("sad", "enemy");
                 _enemyBlock = false;
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             case "taunt":
                 _enemyAttributes.MD = Mood.Angry;
+                ui.UpdateMoodTag("angry", "enemy");
                 _enemyBlock = false;
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
             case "sing":
                 _playerAttributes.MD = Mood.Happy;
+                ui.UpdateMoodTag("happy", "player");
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
@@ -160,12 +171,15 @@ public class Battle : MonoBehaviour
 
                 StartCoroutine(_displayDialogue(_playerMoveDialogues[type]));
                 break;
+            case "item":
+                StartCoroutine(_displayDialogue("You used an item!"));
+                break;
             default:
                 StartCoroutine(_displayDialogue("You were surprised by the enemy!"));
                 break;
         }
 
-        if (!type.Equals("scratch"))
+        if (!type.Equals("scratch") && !type.Equals("item"))
         {
             _playerCooldowns.TryGetValue(type, out cooldown);
             _playerCooldowns[type] = cooldown + 1;
@@ -176,12 +190,11 @@ public class Battle : MonoBehaviour
 
     bool _handleMiss(string type)
     {
-        if (_calculateMiss())
-        {
-            StartCoroutine(_displayDialogue(_missDialogues[type]));
-            return true;
-        }
-        return false;
+        // Never "miss" when using an item, otherwise check
+        if (type.Equals("item") || !_calculateMiss()) return false;
+
+        StartCoroutine(_displayDialogue(_missDialogues[type]));
+        return true;
     }
 
     void _doEnemyMove()
@@ -198,6 +211,8 @@ public class Battle : MonoBehaviour
         switch (move)
         {
             case "hit":
+                if (_enemyBlock) _enemyBlock = false;
+
                 float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
                                   (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
                 float damage = Random.Range(10f, maxDamage) + _calculateBonus(false);
@@ -221,12 +236,14 @@ public class Battle : MonoBehaviour
 
                 StartCoroutine(_displayDialogue(_enemyMoveDialogues["tease"]));
                 _playerAttributes.MD = Mood.Sad;
+                ui.UpdateMoodTag("sad", "player");
                 break;
             case "taunt":
                 if (_playerAttributes.MD is Mood.Angry) goto case "tease";
 
                 StartCoroutine(_displayDialogue(_enemyMoveDialogues["taunt"]));
                 _playerAttributes.MD = Mood.Angry;
+                ui.UpdateMoodTag("angry", "player");
                 break;
         }
 
@@ -290,12 +307,10 @@ public class Battle : MonoBehaviour
     void _endBattle()
     {
         _enemyAttributes.ActiveEnemy = false;
-        _playerAttributes.MD = Mood.Happy;
         _displayText.text = "";
 
         _audioManager.StopBattleMusic();
-
-        UIManager ui = FindObjectOfType<UIManager>();
+        
         ui.QuitBattle();
     }
 

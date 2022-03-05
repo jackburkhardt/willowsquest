@@ -27,6 +27,13 @@ public class UIManager : MonoBehaviour
 
     public PlayerControls PlayerControls;
 
+    public Sprite HappyTag;
+    public Sprite AngryTag;
+    public Sprite SadTag;
+
+    public GameObject EnemyMood;
+    public GameObject WillowMood;
+
     
     // Start is called before the first frame update
     void Start()
@@ -60,7 +67,6 @@ public class UIManager : MonoBehaviour
 
         SetCanvas(BattleCanvas);
         ToggleCanvas(UICanvas, true);
-        ToggleCanvas(AttributesCanvas, true);
 
         // Randomly decide who will act first in the battle
         if (Random.Range(0f,1f) < 0.5) {
@@ -86,13 +92,13 @@ public class UIManager : MonoBehaviour
     void EnableBattleButtons(Dictionary<string, int> cooldowns = null)
     {
         Button[] buttons = BattleCanvas.GetComponentsInChildren<Button>(true);
-        Text buttonText;
+        //Text buttonText;
         if (cooldowns == null)
         {
             foreach (var button in buttons)
             {
-                buttonText = button.GetComponentInChildren<Text>();
-                buttonText.text = button.name;
+                //buttonText = button.GetComponentInChildren<Text>();
+                //buttonText.text = button.name;
                 button.interactable = true;
             }
         }
@@ -101,14 +107,14 @@ public class UIManager : MonoBehaviour
             int cooldown = 0;
             foreach (var button in buttons)
             {
-                buttonText = button.GetComponentInChildren<Text>();
+                //buttonText = button.GetComponentInChildren<Text>();
                 if (cooldowns.TryGetValue(button.name.ToLower(), out cooldown))
                 {
-                    buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
+                    //buttonText.text = String.Format("{0} ({1})", button.name, cooldown);
                 }
                 else
                 {
-                    buttonText.text = button.name;
+                    //buttonText.text = button.name;
                     button.interactable = true;
                 }
             }
@@ -153,9 +159,13 @@ public class UIManager : MonoBehaviour
         _inventoryUseActions[slot].Invoke();
     }
 
-    public void CloseInventory()
+    public void CloseInventory(bool itemUsed = false)
     {
         ToggleCanvas(InventoryCanvas, false);
+        if (itemUsed && BattleCanvas.enabled == true)
+        {
+            OnBattleTurn("item");
+        }
     }
 
     public void OpenAttributes()
@@ -196,5 +206,32 @@ public class UIManager : MonoBehaviour
     void ToggleCanvas(Canvas canvas, bool enable)
     {
         canvas.enabled = enable;
+    }
+
+    public void UpdateMoodTag(string newmood, string party)
+    {
+        GameObject currTag = WillowMood;
+        if (party == "enemy")
+        {
+            currTag = EnemyMood;
+        }
+        else
+        {
+            currTag = WillowMood;
+        }
+
+        if (newmood == "happy")
+        {
+            currTag.GetComponent<Image>().sprite = HappyTag;
+        }
+        else if (newmood == "angry")
+        {
+            currTag.GetComponent<Image>().sprite = AngryTag;
+        }
+        else
+        {
+            currTag.GetComponent<Image>().sprite = SadTag;
+        }
+
     }
 }

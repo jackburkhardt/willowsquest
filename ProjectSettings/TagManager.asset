@@ -6,6 +6,8 @@ TagManager:
   tags:
   - battle
   - scene
+  - enemymood
+  - willowmood
   layers:
   - Default
   - TransparentFX
