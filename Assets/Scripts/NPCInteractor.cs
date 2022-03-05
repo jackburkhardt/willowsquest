@@ -29,6 +29,7 @@ public class NPCInteractor : MonoBehaviour
     
     // (Optional) Icon to appear above their head when in range to signal intractability.
     private SpriteRenderer _iconRenderer;
+    private Transform _iconHolder;
     [SerializeField] private Sprite _iconSprite;
     [SerializeField] private float  _iconOffset;
 
@@ -42,8 +43,9 @@ public class NPCInteractor : MonoBehaviour
     {
         _playerInteractor = FindObjectOfType<Interactor>();
         _battle = GetComponent<Battle>();
+        _iconHolder = GameObject.Find("Icon Holder").transform;
 
-        _iconRenderer = ((GameObject)Instantiate(Resources.Load("Icons/IconPrefab"), new Vector3(transform.position.x, transform.position.y + _iconOffset), Quaternion.identity, transform)).GetComponent<SpriteRenderer>();
+        _iconRenderer = ((GameObject)Instantiate(Resources.Load("Icons/IconPrefab"), new Vector3(transform.position.x, transform.position.y + _iconOffset), Quaternion.identity, _iconHolder)).GetComponent<SpriteRenderer>();
         if (_iconSprite != null) _iconRenderer.sprite = _iconSprite;
     }
 
@@ -52,7 +54,7 @@ public class NPCInteractor : MonoBehaviour
     {
         if (!_inRange || _playerInteractor.IsInteracting) return;
         
-        if (Input.GetKeyDown(KeyCode.E) && task != null && task.completed)
+        if (Input.GetKeyDown(KeyCode.E) && task != null && (task.completed || task.AboutToComplete(this)))
         {
             _playerInteractor.StartInteraction(this, _interactionType,
                 _taskCompleteDialogue, _battle, _item);

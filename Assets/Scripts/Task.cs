@@ -90,6 +90,16 @@ public class Task : MonoBehaviour
         postTaskAction.Invoke();
         StartCoroutine(_tracker.AdvanceObjective(nextState));
     }
+
+    public bool AboutToComplete(NPCInteractor npc)
+    {
+        // this function solves the issue of success dialogue not
+        // showing when the final criteria is talking to an npc
+        // (since the dialogue runs before the quest technically completes,
+        // it will run the incomplete dialogue instead of the complete one)
+
+        return npcs.Count == 1 && npcs.Contains(npc);
+    }
 }
 
 public enum TaskType
