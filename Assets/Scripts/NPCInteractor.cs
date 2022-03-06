@@ -71,12 +71,16 @@ public class NPCInteractor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (!col.CompareTag("Player")) return;
+        
         _inRange = true;
         if (_iconSprite != null) _iconRenderer.enabled = true;
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
+        if (!col.CompareTag("Player")) return;
+        
         _inRange = false;
         if (_iconSprite != null) _iconRenderer.enabled = false;
     }

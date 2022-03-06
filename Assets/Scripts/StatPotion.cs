@@ -22,7 +22,10 @@ public class StatPotion : Item
 
     public override void Use()
     {
-        _attributes = FindObjectOfType<Player>().Attributes;
+        if (!FindObjectOfType<PlayerControls>().Disabled) return;
+        
+        Player p = FindObjectOfType<Player>();
+        _attributes = p.Attributes;
         StartCoroutine(StatusEffect());
 
         base.Use();

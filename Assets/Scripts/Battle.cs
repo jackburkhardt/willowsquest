@@ -118,6 +118,11 @@ public class Battle : MonoBehaviour
     {
         if (_handleMiss(type)) return false;
 
+        foreach (var potion in FindObjectsOfType<StatPotion>())
+        {
+            potion.PlayerTurnPass();
+        }
+
         int cooldown;
         bool flee = false;
 
