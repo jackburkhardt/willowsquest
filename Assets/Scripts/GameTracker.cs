@@ -28,18 +28,19 @@ public class GameTracker : MonoBehaviour
         objectiveDescriptions = new Dictionary<GameState, string>()
         {
             {GameState.Start, "Talk to the statues around here to figure out where you are."},
-            {GameState.FightSquirrels, "Fight off the squirrels. One of them probably has the key."},
+            {GameState.CheckFirstGate, "Begin following the path to the gate."},
+            {GameState.FightSquirrels, "Fight off the squirrels. One of them may know where the key is."},
             {GameState.Stump, "Grab the key and bring it to the gate guard."},
             {GameState.MeetCobra, "Talk to the Cobra King."},
-            {GameState.FightSkunks, "Go \"talk\" to the skunks."},
+            {GameState.FightWolves, "Go \"talk\" to the wolves."},
             {GameState.GiveCrown, "Return the crown to the Cobra King."},
             {GameState.CheckSecondGate, "Keep following the path to the next gate!"},
             //{GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
             {GameState.MeetFrog, "The gatekeeper is asleep. Maybe find someone else to ask."},
             {GameState.FindWorms, "Find the worms. They may be hidden under some debris somewhere."},
             {GameState.GiveWorms, "Give the (very slimy) worms to Dr. Frog"},
-            {GameState.FightBear, "OH NO! A BEAR!"},
-            {GameState.Finish, "Reunite with your gelatin friend!"}
+            {GameState.FightBear, "Keep going. The gelatin has to be close!"},
+            {GameState.Finish, "Reunite with your gelatin friend."}
         };
 
         objectiveText.text = objectiveDescriptions[0];
@@ -132,5 +133,5 @@ public class GameTracker : MonoBehaviour
         crown.transform.position = FindObjectOfType<Player>().transform.position;
         crown.SetActive(true);
     }
-    
+
 }

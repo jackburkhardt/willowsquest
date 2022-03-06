@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
         UpdateUI();
         
         // TODO: see if this causes problems. if so, disable renderers and colliders manually
+        // update: this caused problems lmao :(
         item.gameObject.SetActive(false);
 
         if (Items.Count == Capacity) Full = true;

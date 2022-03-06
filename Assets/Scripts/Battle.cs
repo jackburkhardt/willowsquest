@@ -328,4 +328,5 @@ public class Battle : MonoBehaviour
     public Attributes EnemyAttributes => _enemyAttributes;
 
     public DifficultyLevel EnemyDifficulty => _enemyDifficulty;
+
 }
