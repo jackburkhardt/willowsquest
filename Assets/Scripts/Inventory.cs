@@ -26,7 +26,8 @@ public class Inventory : MonoBehaviour
         
         // TODO: see if this causes problems. if so, disable renderers and colliders manually
         // update: this caused problems lmao :(
-        item.gameObject.SetActive(false);
+        item.GetComponent<SpriteRenderer>().enabled = false;
+        item.GetComponent<Collider2D>().enabled = false;
 
         if (Items.Count == Capacity) Full = true;
 
