@@ -70,7 +70,6 @@ public class Battle : MonoBehaviour
     {
         _enemyAttributes.HP = _enemyAttributes.MaxHP;
         _enemyAttributes.MD = Mood.Angry;
-        ui.UpdateMoodTag("angry", "enemy");
     }
 
     public void OnBattleStart()
@@ -83,6 +82,11 @@ public class Battle : MonoBehaviour
         {
             _audioManager.StartBattleMusic();
         }
+
+        string moodTag = _enemyAttributes.MD is Mood.Angry ? "angry" :
+                         _enemyAttributes.MD is Mood.Sad   ? "sad" :
+                                                             "happy";
+        ui.UpdateMoodTag(moodTag, "enemy");
 
         _enemyAttributes.ActiveEnemy = true;
 
