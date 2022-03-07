@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Attributes : MonoBehaviour
 {
     public float HP  = 100f;
+    public float MaxHP;
     public float ATK = 1f;
     public float DEF = 1f;
     public float SPD = 1f;
@@ -27,6 +28,7 @@ public class Attributes : MonoBehaviour
     {
         UpdateText();
         UpdateHealthBar();
+        MaxHP = HP;
     }
 
     void Update()
@@ -36,7 +38,7 @@ public class Attributes : MonoBehaviour
 
     public void UpdateHealth(float value)
     {
-        HP = Mathf.Clamp(HP+value, 0, 100f);
+        HP = Mathf.Clamp(HP+value, 0, MaxHP);
     }
 
     public void AddAttribute(string attribute)
@@ -78,7 +80,7 @@ public class Attributes : MonoBehaviour
         {
             HealthBar.fillAmount = Mathf.Lerp(
                 HealthBar.fillAmount,
-                Mathf.Clamp(HP/100f, 0, 1f),
+                Mathf.Clamp(HP/MaxHP, 0, 1f),
                 _lerpSpeed);
         }
     }

@@ -68,7 +68,7 @@ public class Battle : MonoBehaviour
 
     public void InitializeEnemy()
     {
-        _enemyAttributes.HP = 100f;
+        _enemyAttributes.HP = _enemyAttributes.MaxHP;
         _enemyAttributes.MD = Mood.Angry;
         ui.UpdateMoodTag("angry", "enemy");
     }
