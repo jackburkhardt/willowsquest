@@ -22,6 +22,7 @@ public class Item : MonoBehaviour
         ui.CloseInventory(true);
 
         // Maybe we want to make this not a MonoBehaviour?
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

@@ -11,6 +11,10 @@ public class UIManager : MonoBehaviour
 
     public Canvas UICanvas;
 
+    public Canvas WinCanvas;
+
+    public Canvas IntroCanvas;
+
     public Canvas InventoryCanvas;
     public GameObject InventorySlots;
     private Action[] _inventoryUseActions;
@@ -48,6 +52,16 @@ public class UIManager : MonoBehaviour
     {
         PlayerControls.Disabled = false;
         SetCanvas(UICanvas);
+    }
+
+    public void ShowIntro()
+    {
+        SetCanvas(IntroCanvas);
+    }
+
+    public void ShowWin()
+    {
+        SetCanvas(WinCanvas);
     }
 
     public void GameOver()
@@ -196,10 +210,9 @@ public class UIManager : MonoBehaviour
 
     void SetCanvas(Canvas canvas)
     {
-        foreach (var c in new Canvas[6] {StartCanvas, UICanvas, InventoryCanvas, AttributesCanvas, BattleCanvas, GameOverCanvas})
+        foreach (var c in new Canvas[] {StartCanvas, UICanvas, InventoryCanvas, AttributesCanvas, BattleCanvas, GameOverCanvas, IntroCanvas, WinCanvas})
         {
-            if (c.name.Equals(canvas.name)) c.enabled = true;
-            else c.enabled = false;
+            c.enabled = c.name.Equals(canvas.name);
         }
     }
 

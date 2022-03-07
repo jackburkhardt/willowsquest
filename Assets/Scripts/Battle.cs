@@ -118,6 +118,11 @@ public class Battle : MonoBehaviour
     {
         if (_handleMiss(type)) return false;
 
+        foreach (var potion in FindObjectsOfType<StatPotion>())
+        {
+            potion.PlayerTurnPass();
+        }
+
         int cooldown;
         bool flee = false;
 
@@ -213,8 +218,8 @@ public class Battle : MonoBehaviour
             case "hit":
                 if (_enemyBlock) _enemyBlock = false;
 
-                float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 15 :
-                                  (_enemyDifficulty is DifficultyLevel.Medium) ? 25 : 50;
+                float maxDamage = (_enemyDifficulty is DifficultyLevel.Easy) ? 10 :
+                                  (_enemyDifficulty is DifficultyLevel.Medium) ? 20 : 30;
                 float damage = Random.Range(10f, maxDamage) + _calculateBonus(false);
 
                 if (_enemyAttributes.MD is Mood.Angry) damage *= _moodMultiplier;
@@ -289,8 +294,8 @@ public class Battle : MonoBehaviour
     {
         return
             (_enemyDifficulty is DifficultyLevel.Easy) ? 0.80f :
-            (_enemyDifficulty is DifficultyLevel.Medium) ? 1.00f :
-         /* (EnemyDifficulty is DifficultyLevel.Hard) */  1.25f;
+            (_enemyDifficulty is DifficultyLevel.Medium) ? 0.9f :
+         /* (EnemyDifficulty is DifficultyLevel.Hard) */  1.1f;
     }
 
     void _updateCooldowns()
@@ -328,4 +333,5 @@ public class Battle : MonoBehaviour
     public Attributes EnemyAttributes => _enemyAttributes;
 
     public DifficultyLevel EnemyDifficulty => _enemyDifficulty;
+
 }

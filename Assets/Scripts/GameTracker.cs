@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -15,23 +17,30 @@ public class GameTracker : MonoBehaviour
     public static List<GameObject> enemiesKilledSinceLastCheckpoint = new List<GameObject>();
     public static List<Item> itemsUsedSinceLastCheckpoint = new List<Item>();
 
+    [SerializeField] private SpriteRenderer gate2Door;
+    [SerializeField] private SpriteRenderer gate3Door;
+    [SerializeField] private Sprite openDoor;
+    [SerializeField] private GameObject crown;
+
     // Start is called before the first frame update
     void Awake()
     {
         objectiveDescriptions = new Dictionary<GameState, string>()
         {
             {GameState.Start, "Talk to the statues around here to figure out where you are."},
-            {GameState.FightSquirrels, "Fight off the squirrels. One of them probably has the key."},
+            {GameState.CheckFirstGate, "Begin following the path to the gate."},
+            {GameState.FightSquirrels, "Fight off the squirrels. One of them may know where the key is."},
             {GameState.Stump, "Grab the key and bring it to the gate guard."},
             {GameState.MeetCobra, "Talk to the Cobra King."},
-            {GameState.FightSkunks, "Go \"talk\" to the skunks."},
+            {GameState.FightWolves, "Go \"talk\" to the wolves."},
             {GameState.GiveCrown, "Return the crown to the Cobra King."},
-            {GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
-            {GameState.MeetFrog, "Talk to the esteemed frog blocking the path."},
-            {GameState.FindWorms, "Find the worms. They should be in a small pot somewhere."},
+            {GameState.CheckSecondGate, "Keep following the path to the next gate!"},
+            //{GameState.FightFoxes, "AMBUSH! Fight the sneaky foxes off!"},
+            {GameState.MeetFrog, "The gatekeeper is asleep. Maybe find someone else to ask."},
+            {GameState.FindWorms, "Find the worms. They may be hidden under some debris somewhere."},
             {GameState.GiveWorms, "Give the (very slimy) worms to Dr. Frog"},
-            {GameState.FightBear, "OH NO! A BEAR!"},
-            {GameState.Finish, "Reunite with your gelatin friend!"}
+            {GameState.FightBear, "Keep going. The gelatin has to be close!"},
+            {GameState.Finish, "Reunite with your gelatin friend."}
         };
 
         objectiveText.text = objectiveDescriptions[0];
@@ -58,6 +67,17 @@ public class GameTracker : MonoBehaviour
         {
             inventory.Items.Add(item);
         }
+    }
+
+    public void RestartGame()
+    {
+        // TODO: may not be our intended behavior
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public IEnumerator AdvanceObjective(GameState state)
@@ -96,12 +116,22 @@ public class GameTracker : MonoBehaviour
                 Debug.Log("gate 1 unlocked");
                 break;
             case 2:
+                gate2Door.sprite = openDoor;
+                gate2Door.gameObject.GetComponent<Collider2D>().enabled = false;
                 break;
             case 3:
+                gate3Door.sprite = openDoor;
+                gate3Door.gameObject.GetComponent<Collider2D>().enabled = false;
                 break;
             default:
                 return;
         }
     }
-    
+
+    public void SpawnCrown()
+    {
+        crown.transform.position = FindObjectOfType<Player>().transform.position;
+        crown.SetActive(true);
+    }
+
 }
