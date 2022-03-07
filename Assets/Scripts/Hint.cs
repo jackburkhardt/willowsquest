@@ -12,7 +12,7 @@ public class Hint : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Start is called before the first frame update
     void Start()
     {
-        _toggleActive(false);
+        ToggleActive(false);
     }
 
     // Update is called once per frame
@@ -27,15 +27,15 @@ public class Hint : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _toggleActive(true);
+        ToggleActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _toggleActive(false);
+        ToggleActive(false);
     }
 
-    private void _toggleActive(bool active)
+    virtual public void ToggleActive(bool active)
     {
         if (HintObject != null)
         {
