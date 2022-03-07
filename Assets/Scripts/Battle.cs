@@ -75,6 +75,15 @@ public class Battle : MonoBehaviour
 
     public void OnBattleStart()
     {
+        if (EnemyName == "BEAR")
+        {
+            _audioManager.StartFinalBattle();
+        }
+        else
+        {
+            _audioManager.StartBattleMusic();
+        }
+
         _enemyAttributes.ActiveEnemy = true;
 
         _playerAttributes.MD = Mood.Happy;
@@ -96,6 +105,8 @@ public class Battle : MonoBehaviour
         {
             _playerAttributes.EXP += _enemyAttributes.EXP;
             _playerAttributes.UpdateText();
+
+            _audioManager.Victory();
 
             _endBattle();
 

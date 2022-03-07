@@ -37,6 +37,8 @@ public class NPCInteractor : MonoBehaviour
     [SerializeField] private Task task;
     //[SerializeField] private List<string> _taskIncompleteDialogue;
     [SerializeField] private List<string> _taskCompleteDialogue;
+
+    private AudioManager _audioManager;
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,7 @@ public class NPCInteractor : MonoBehaviour
         _playerInteractor = FindObjectOfType<Interactor>();
         _battle = GetComponent<Battle>();
         _iconHolder = GameObject.Find("Icon Holder").transform;
+        _audioManager = FindObjectOfType<AudioManager>();
 
         _iconRenderer = ((GameObject)Instantiate(Resources.Load("Icons/IconPrefab"), new Vector3(transform.position.x, transform.position.y + _iconOffset), Quaternion.identity, _iconHolder)).GetComponent<SpriteRenderer>();
         if (_iconSprite != null) _iconRenderer.sprite = _iconSprite;
@@ -61,6 +64,7 @@ public class NPCInteractor : MonoBehaviour
         }
         else if (_interactionType is InteractionType.Battle) 
         {
+            _audioManager.Encounter();
             _playerInteractor.StartInteraction(this, _interactionType, _dialogue, _battle, _item);
             _inRange = false;
         } else if (Input.GetKeyDown(KeyCode.E))

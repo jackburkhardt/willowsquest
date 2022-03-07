@@ -99,6 +99,7 @@ public class Interactor : MonoBehaviour
                 _nextPageImage.enabled = true;
                 yield return null;
             }
+            _audioManager.Next();
             _nextPageImage.enabled = false;
             _displayText.text = "";
         }
